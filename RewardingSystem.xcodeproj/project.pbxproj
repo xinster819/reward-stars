@@ -1,0 +1,823 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04E15CB29092BA869F64A96C /* AvatarStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592CFE4E3C6056C0447FED63 /* AvatarStoreTests.swift */; };
+		06D05268B0C86B796EE76A9A /* RewardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F0CCC2A5B44D5D94F52B64 /* RewardRepository.swift */; };
+		09F0C4992C01AB5A3E333469 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B17763BA170B78BF9B807D15 /* Localizable.xcstrings */; };
+		12D6C468B2EDC35491FDA3DD /* ChildStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26005CBFEFB6D3B1814AB857 /* ChildStoreView.swift */; };
+		1A2F3B966D6962190B9DF72C /* RewardRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767B374A2186EF43B7D5F8F /* RewardRepositoryTests.swift */; };
+		1D723B6D2C5C82F9687FB1C9 /* ScoreSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A6258055804FAEF500F53 /* ScoreSummary.swift */; };
+		206C5F7B3FE3DACE262A5DB0 /* ChildDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8477D8F6604831024C3154 /* ChildDashboardView.swift */; };
+		25EEF02DB269EEE58044FCAC /* DomainLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F9306D28344F97C61B4759 /* DomainLocalization.swift */; };
+		3DF248F5171D5F2C032F4BC8 /* TrendChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DA8DE33170CEBD70320D0 /* TrendChart.swift */; };
+		40C4855859A2889680DD488F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32811FAAB5E65E14BEAE202B /* HistoryView.swift */; };
+		498193AC7C392E6BD35647B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F7AF97BFA3DF32C2A7B0D7 /* Assets.xcassets */; };
+		4BD67D03B73C905CBC8CE03B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C9A02FFCC5EB940DD95222 /* PersistenceController.swift */; };
+		4F488C1FE6CA09F51A31ECCE /* RoleGateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0BBFF6485F3A0B011FCB3 /* RoleGateUITests.swift */; };
+		517A90EF5987D9EBCB74485D /* AvatarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8369BBCC763C075C9FC77 /* AvatarStore.swift */; };
+		5E38798F5574A28AAB8CF4D2 /* RewardsAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7374078474F1F4D8E1B30E /* RewardsAdminView.swift */; };
+		5F722586A1FF0FD789EEC392 /* DataBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F03C82F9C091A549562968 /* DataBackup.swift */; };
+		5FF1C10140D2B9FF63D4D2D9 /* RewardCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1EEA29D578E756294DBEA8CA /* RewardCore */; };
+		674C5F3FD1D8DEF1E8DDBA43 /* OnboardingSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5EF48F5FD93AB11CFF0C69 /* OnboardingSetup.swift */; };
+		67C9C40A686690B8C44C8227 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CC85492DDE22DE340251C /* AppConfig.swift */; };
+		6AA305C29DD67519C99AE8BE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B8557F95A4463012645D47 /* Theme.swift */; };
+		6AB8F68CB23A3788E00F7B2D /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB706432BB551EDAEC33985 /* BiometricAuth.swift */; };
+		6D243257B48E40BF5EE39A9C /* PersistenceMigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE00F98B054FED311483ADA /* PersistenceMigrationTests.swift */; };
+		70AE44BAB2E5458214F15172 /* RewardingSystemApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A954952D77A133C8BB00DD5E /* RewardingSystemApp.swift */; };
+		7C65D27697F3B954F673985F /* PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EC0695EF0FC561BA3C4CA5 /* PrivacyView.swift */; };
+		7CD8A5792B6B9D909FCB0ACF /* RoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806FADB1B368135D8844D687 /* RoleManager.swift */; };
+		8081F9A9C2A8C9DBCFA8A61E /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751536FB242DFAC5288B5622 /* OnboardingTests.swift */; };
+		8E05C6E37B9C6035F7BB707B /* PINStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81016C63E121AA637B603E4 /* PINStore.swift */; };
+		8E473C06EB601130F99CBBBD /* ParentSettingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04E258AE11EC8496E047DB1 /* ParentSettingsUITests.swift */; };
+		922DFC79D80869DC68028188 /* SchemaVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B649F509340DECBE329E548 /* SchemaVersions.swift */; };
+		9768E9335D00A0AE8DB2A20B /* SwiftDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562E888F50A20DEB4B9B23C /* SwiftDataModels.swift */; };
+		9DBB988BF3E04A3D64E1518C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A117632405F061E5FFAEB30 /* OnboardingView.swift */; };
+		A8E30325F088DF322B40AA33 /* OnboardingSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC77D7958D54C6E803C4299 /* OnboardingSetupView.swift */; };
+		AF01959F3CAD96F9329B8056 /* SmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47330C7ADFD2B7B6C9DD3BB4 /* SmokeTests.swift */; };
+		B0444BAA76FBDADFCED59C55 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E323183AA2C3DCE795288591 /* AvatarView.swift */; };
+		B0BB4E02A20820E7F35A053E /* AuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC27F0458368561339A7C986 /* AuthTests.swift */; };
+		B479BA8BFAA57E4805979E2A /* ScoreEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA91932D0803B1440729A89 /* ScoreEntryView.swift */; };
+		BA1CC2280814A5FDD2BB7A3E /* RulesAdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F6B11F210B4E07238E9FF6 /* RulesAdminView.swift */; };
+		BC9B0DB603A191A47BBE7D09 /* ParentGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6425F5FACF002EEA9CF66396 /* ParentGateView.swift */; };
+		C11179FACBCB77D394748D6D /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB924C303B6A35639275C0C2 /* OnboardingUITests.swift */; };
+		C1666DB82989716956EA84EB /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212F37A58CF33289AD90AD54 /* SharedComponents.swift */; };
+		CC84ABC7F6F0E264A18D0996 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1407CA725BAA898A8927CDF /* RootView.swift */; };
+		CD373B1B5B1A5A978591B1A0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 52CFD1F135D2AEDAECC2BE98 /* PrivacyInfo.xcprivacy */; };
+		DD2A1723BF71BF1219CD3DA9 /* ParentSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6EBEE3FEA19F0847ECFAE5 /* ParentSettingsView.swift */; };
+		E1F8D764750A7C6707BB5850 /* ChildHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63269DD455B0DB98BCA9B14 /* ChildHistoryView.swift */; };
+		E48B43B089092C386A3E0D88 /* ParentDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F883F30822C3AEE9944E273 /* ParentDashboardView.swift */; };
+		EDCFED0D93533D750D71E22F /* RewardCore in Frameworks */ = {isa = PBXBuildFile; productRef = F6B037C2CBAC0A61A789B639 /* RewardCore */; };
+		F5D8B466BCBF8F2D85CBD1BB /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 982775D4A6E69DAD6B845BB6 /* InfoPlist.xcstrings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		22A3BC246A73253173A57C56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AA89AD10CC49BE3D4FDBEBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D4564D179C53179D6BF6553;
+			remoteInfo = RewardingSystem;
+		};
+		DE52CE391824478CE438E234 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AA89AD10CC49BE3D4FDBEBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D4564D179C53179D6BF6553;
+			remoteInfo = RewardingSystem;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0BC77D7958D54C6E803C4299 /* OnboardingSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSetupView.swift; sourceTree = "<group>"; };
+		0F883F30822C3AEE9944E273 /* ParentDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentDashboardView.swift; sourceTree = "<group>"; };
+		16B8557F95A4463012645D47 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		17492F677C8F9C3282B9919C /* RewardingSystemUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RewardingSystemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1767B374A2186EF43B7D5F8F /* RewardRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardRepositoryTests.swift; sourceTree = "<group>"; };
+		1DD0BBFF6485F3A0B011FCB3 /* RoleGateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleGateUITests.swift; sourceTree = "<group>"; };
+		1E7374078474F1F4D8E1B30E /* RewardsAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsAdminView.swift; sourceTree = "<group>"; };
+		1EA91932D0803B1440729A89 /* ScoreEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEntryView.swift; sourceTree = "<group>"; };
+		212F37A58CF33289AD90AD54 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
+		26005CBFEFB6D3B1814AB857 /* ChildStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildStoreView.swift; sourceTree = "<group>"; };
+		32811FAAB5E65E14BEAE202B /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		3A117632405F061E5FFAEB30 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		3AE85CAF36219D4CF4B8EB78 /* RewardCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RewardCore; path = RewardCore; sourceTree = SOURCE_ROOT; };
+		47330C7ADFD2B7B6C9DD3BB4 /* SmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeTests.swift; sourceTree = "<group>"; };
+		52CFD1F135D2AEDAECC2BE98 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		52D8369BBCC763C075C9FC77 /* AvatarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarStore.swift; sourceTree = "<group>"; };
+		538CC85492DDE22DE340251C /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		5562E888F50A20DEB4B9B23C /* SwiftDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataModels.swift; sourceTree = "<group>"; };
+		592CFE4E3C6056C0447FED63 /* AvatarStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarStoreTests.swift; sourceTree = "<group>"; };
+		5B649F509340DECBE329E548 /* SchemaVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaVersions.swift; sourceTree = "<group>"; };
+		6425F5FACF002EEA9CF66396 /* ParentGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGateView.swift; sourceTree = "<group>"; };
+		6E5EF48F5FD93AB11CFF0C69 /* OnboardingSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSetup.swift; sourceTree = "<group>"; };
+		751536FB242DFAC5288B5622 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
+		76F9306D28344F97C61B4759 /* DomainLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainLocalization.swift; sourceTree = "<group>"; };
+		806FADB1B368135D8844D687 /* RoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleManager.swift; sourceTree = "<group>"; };
+		8F7DA8DE33170CEBD70320D0 /* TrendChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendChart.swift; sourceTree = "<group>"; };
+		982775D4A6E69DAD6B845BB6 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		9DE00F98B054FED311483ADA /* PersistenceMigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceMigrationTests.swift; sourceTree = "<group>"; };
+		A954952D77A133C8BB00DD5E /* RewardingSystemApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardingSystemApp.swift; sourceTree = "<group>"; };
+		AB924C303B6A35639275C0C2 /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		AC27F0458368561339A7C986 /* AuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTests.swift; sourceTree = "<group>"; };
+		B17763BA170B78BF9B807D15 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		B2F0CCC2A5B44D5D94F52B64 /* RewardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardRepository.swift; sourceTree = "<group>"; };
+		C05A6258055804FAEF500F53 /* ScoreSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSummary.swift; sourceTree = "<group>"; };
+		C1EC0695EF0FC561BA3C4CA5 /* PrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyView.swift; sourceTree = "<group>"; };
+		C4F03C82F9C091A549562968 /* DataBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBackup.swift; sourceTree = "<group>"; };
+		CA8477D8F6604831024C3154 /* ChildDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildDashboardView.swift; sourceTree = "<group>"; };
+		D1F6B11F210B4E07238E9FF6 /* RulesAdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesAdminView.swift; sourceTree = "<group>"; };
+		D9C9A02FFCC5EB940DD95222 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		DB6E2C9CBF85B2CCEB45745A /* RewardingSystemTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RewardingSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E04E258AE11EC8496E047DB1 /* ParentSettingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsUITests.swift; sourceTree = "<group>"; };
+		E1407CA725BAA898A8927CDF /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		E323183AA2C3DCE795288591 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		E5F7AF97BFA3DF32C2A7B0D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E81016C63E121AA637B603E4 /* PINStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINStore.swift; sourceTree = "<group>"; };
+		EA6EBEE3FEA19F0847ECFAE5 /* ParentSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentSettingsView.swift; sourceTree = "<group>"; };
+		F63269DD455B0DB98BCA9B14 /* ChildHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildHistoryView.swift; sourceTree = "<group>"; };
+		FBB706432BB551EDAEC33985 /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
+		FF5A5F3A3DC5E428D380130D /* RewardingSystem.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RewardingSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7FC8DBB03EE37251B3711E14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FF1C10140D2B9FF63D4D2D9 /* RewardCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92A164C4B8BDAC136E4F4606 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDCFED0D93533D750D71E22F /* RewardCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07322B9687FA128A316DA260 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E5F7AF97BFA3DF32C2A7B0D7 /* Assets.xcassets */,
+				982775D4A6E69DAD6B845BB6 /* InfoPlist.xcstrings */,
+				B17763BA170B78BF9B807D15 /* Localizable.xcstrings */,
+				52CFD1F135D2AEDAECC2BE98 /* PrivacyInfo.xcprivacy */,
+				A954952D77A133C8BB00DD5E /* RewardingSystemApp.swift */,
+				5BECF32971AF07DC7C9F70B7 /* Auth */,
+				F2990533FE4CD82D52675A15 /* Persistence */,
+				17F85135F8782B8EADE0452D /* Support */,
+				9A07CD7297C934E9AB6E05C6 /* Views */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		17F85135F8782B8EADE0452D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				538CC85492DDE22DE340251C /* AppConfig.swift */,
+				52D8369BBCC763C075C9FC77 /* AvatarStore.swift */,
+				E323183AA2C3DCE795288591 /* AvatarView.swift */,
+				76F9306D28344F97C61B4759 /* DomainLocalization.swift */,
+				6E5EF48F5FD93AB11CFF0C69 /* OnboardingSetup.swift */,
+				C05A6258055804FAEF500F53 /* ScoreSummary.swift */,
+				212F37A58CF33289AD90AD54 /* SharedComponents.swift */,
+				16B8557F95A4463012645D47 /* Theme.swift */,
+				8F7DA8DE33170CEBD70320D0 /* TrendChart.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		403C3565A5F977CCBEFF4C6F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				6425F5FACF002EEA9CF66396 /* ParentGateView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		522774D15A868C5743ED5EAB /* AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC27F0458368561339A7C986 /* AuthTests.swift */,
+				592CFE4E3C6056C0447FED63 /* AvatarStoreTests.swift */,
+				751536FB242DFAC5288B5622 /* OnboardingTests.swift */,
+				9DE00F98B054FED311483ADA /* PersistenceMigrationTests.swift */,
+				1767B374A2186EF43B7D5F8F /* RewardRepositoryTests.swift */,
+				47330C7ADFD2B7B6C9DD3BB4 /* SmokeTests.swift */,
+			);
+			path = AppTests;
+			sourceTree = "<group>";
+		};
+		5BECF32971AF07DC7C9F70B7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FBB706432BB551EDAEC33985 /* BiometricAuth.swift */,
+				E81016C63E121AA637B603E4 /* PINStore.swift */,
+				806FADB1B368135D8844D687 /* RoleManager.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		61DD96E66E500162CD75EE3D /* Child */ = {
+			isa = PBXGroup;
+			children = (
+				CA8477D8F6604831024C3154 /* ChildDashboardView.swift */,
+				F63269DD455B0DB98BCA9B14 /* ChildHistoryView.swift */,
+				26005CBFEFB6D3B1814AB857 /* ChildStoreView.swift */,
+			);
+			path = Child;
+			sourceTree = "<group>";
+		};
+		69E5FE45DE96B166C81002C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF5A5F3A3DC5E428D380130D /* RewardingSystem.app */,
+				DB6E2C9CBF85B2CCEB45745A /* RewardingSystemTests.xctest */,
+				17492F677C8F9C3282B9919C /* RewardingSystemUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		75414A8CDF20FB43242031F1 = {
+			isa = PBXGroup;
+			children = (
+				07322B9687FA128A316DA260 /* App */,
+				522774D15A868C5743ED5EAB /* AppTests */,
+				AD8F212F1A0614CE0CA15D40 /* Packages */,
+				B3AF964174252798E4A3B21B /* UITests */,
+				69E5FE45DE96B166C81002C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A07CD7297C934E9AB6E05C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1407CA725BAA898A8927CDF /* RootView.swift */,
+				403C3565A5F977CCBEFF4C6F /* Auth */,
+				61DD96E66E500162CD75EE3D /* Child */,
+				DA1087C4FBB8B6218999DE89 /* Onboarding */,
+				DAD4B603DA56E61412CF3D42 /* Parent */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD8F212F1A0614CE0CA15D40 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				3AE85CAF36219D4CF4B8EB78 /* RewardCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		B3AF964174252798E4A3B21B /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				AB924C303B6A35639275C0C2 /* OnboardingUITests.swift */,
+				E04E258AE11EC8496E047DB1 /* ParentSettingsUITests.swift */,
+				1DD0BBFF6485F3A0B011FCB3 /* RoleGateUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		DA1087C4FBB8B6218999DE89 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				0BC77D7958D54C6E803C4299 /* OnboardingSetupView.swift */,
+				3A117632405F061E5FFAEB30 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		DAD4B603DA56E61412CF3D42 /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				32811FAAB5E65E14BEAE202B /* HistoryView.swift */,
+				0F883F30822C3AEE9944E273 /* ParentDashboardView.swift */,
+				EA6EBEE3FEA19F0847ECFAE5 /* ParentSettingsView.swift */,
+				C1EC0695EF0FC561BA3C4CA5 /* PrivacyView.swift */,
+				1E7374078474F1F4D8E1B30E /* RewardsAdminView.swift */,
+				D1F6B11F210B4E07238E9FF6 /* RulesAdminView.swift */,
+				1EA91932D0803B1440729A89 /* ScoreEntryView.swift */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		F2990533FE4CD82D52675A15 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				C4F03C82F9C091A549562968 /* DataBackup.swift */,
+				D9C9A02FFCC5EB940DD95222 /* PersistenceController.swift */,
+				B2F0CCC2A5B44D5D94F52B64 /* RewardRepository.swift */,
+				5B649F509340DECBE329E548 /* SchemaVersions.swift */,
+				5562E888F50A20DEB4B9B23C /* SwiftDataModels.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0BAA098F3388B7758B105E08 /* RewardingSystemTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF7D9BA590D2BFC763E7EA9C /* Build configuration list for PBXNativeTarget "RewardingSystemTests" */;
+			buildPhases = (
+				57AE8CEA5A82244550996093 /* Sources */,
+				7FC8DBB03EE37251B3711E14 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				95FF99BF631BAE7B2DE90FB0 /* PBXTargetDependency */,
+			);
+			name = RewardingSystemTests;
+			packageProductDependencies = (
+				1EEA29D578E756294DBEA8CA /* RewardCore */,
+			);
+			productName = RewardingSystemTests;
+			productReference = DB6E2C9CBF85B2CCEB45745A /* RewardingSystemTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6D4564D179C53179D6BF6553 /* RewardingSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B0D4E4D51EC2A1A90D17F66 /* Build configuration list for PBXNativeTarget "RewardingSystem" */;
+			buildPhases = (
+				C995A5178825BC6ECF0F8A4B /* Sources */,
+				F421784E2B1EBE329B1F5821 /* Resources */,
+				92A164C4B8BDAC136E4F4606 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RewardingSystem;
+			packageProductDependencies = (
+				F6B037C2CBAC0A61A789B639 /* RewardCore */,
+			);
+			productName = RewardingSystem;
+			productReference = FF5A5F3A3DC5E428D380130D /* RewardingSystem.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9631C86619499A1113939174 /* RewardingSystemUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD86EE212A2D75F6334E9836 /* Build configuration list for PBXNativeTarget "RewardingSystemUITests" */;
+			buildPhases = (
+				1B2DBAF37652F33864B2934A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16BA6190772DFEAEDCFBAE66 /* PBXTargetDependency */,
+			);
+			name = RewardingSystemUITests;
+			packageProductDependencies = (
+			);
+			productName = RewardingSystemUITests;
+			productReference = 17492F677C8F9C3282B9919C /* RewardingSystemUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3AA89AD10CC49BE3D4FDBEBA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					0BAA098F3388B7758B105E08 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					6D4564D179C53179D6BF6553 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					9631C86619499A1113939174 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6D4564D179C53179D6BF6553;
+					};
+				};
+			};
+			buildConfigurationList = 31E4C77C090E3E1FC2BC76AA /* Build configuration list for PBXProject "RewardingSystem" */;
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				"zh-Hans",
+			);
+			mainGroup = 75414A8CDF20FB43242031F1;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F286239F5219BF69E9078BE3 /* XCLocalSwiftPackageReference "RewardCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 69E5FE45DE96B166C81002C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D4564D179C53179D6BF6553 /* RewardingSystem */,
+				0BAA098F3388B7758B105E08 /* RewardingSystemTests */,
+				9631C86619499A1113939174 /* RewardingSystemUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F421784E2B1EBE329B1F5821 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				498193AC7C392E6BD35647B6 /* Assets.xcassets in Resources */,
+				F5D8B466BCBF8F2D85CBD1BB /* InfoPlist.xcstrings in Resources */,
+				09F0C4992C01AB5A3E333469 /* Localizable.xcstrings in Resources */,
+				CD373B1B5B1A5A978591B1A0 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B2DBAF37652F33864B2934A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C11179FACBCB77D394748D6D /* OnboardingUITests.swift in Sources */,
+				8E473C06EB601130F99CBBBD /* ParentSettingsUITests.swift in Sources */,
+				4F488C1FE6CA09F51A31ECCE /* RoleGateUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57AE8CEA5A82244550996093 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0BB4E02A20820E7F35A053E /* AuthTests.swift in Sources */,
+				04E15CB29092BA869F64A96C /* AvatarStoreTests.swift in Sources */,
+				8081F9A9C2A8C9DBCFA8A61E /* OnboardingTests.swift in Sources */,
+				6D243257B48E40BF5EE39A9C /* PersistenceMigrationTests.swift in Sources */,
+				1A2F3B966D6962190B9DF72C /* RewardRepositoryTests.swift in Sources */,
+				AF01959F3CAD96F9329B8056 /* SmokeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C995A5178825BC6ECF0F8A4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67C9C40A686690B8C44C8227 /* AppConfig.swift in Sources */,
+				517A90EF5987D9EBCB74485D /* AvatarStore.swift in Sources */,
+				B0444BAA76FBDADFCED59C55 /* AvatarView.swift in Sources */,
+				6AB8F68CB23A3788E00F7B2D /* BiometricAuth.swift in Sources */,
+				206C5F7B3FE3DACE262A5DB0 /* ChildDashboardView.swift in Sources */,
+				E1F8D764750A7C6707BB5850 /* ChildHistoryView.swift in Sources */,
+				12D6C468B2EDC35491FDA3DD /* ChildStoreView.swift in Sources */,
+				5F722586A1FF0FD789EEC392 /* DataBackup.swift in Sources */,
+				25EEF02DB269EEE58044FCAC /* DomainLocalization.swift in Sources */,
+				40C4855859A2889680DD488F /* HistoryView.swift in Sources */,
+				674C5F3FD1D8DEF1E8DDBA43 /* OnboardingSetup.swift in Sources */,
+				A8E30325F088DF322B40AA33 /* OnboardingSetupView.swift in Sources */,
+				9DBB988BF3E04A3D64E1518C /* OnboardingView.swift in Sources */,
+				8E05C6E37B9C6035F7BB707B /* PINStore.swift in Sources */,
+				E48B43B089092C386A3E0D88 /* ParentDashboardView.swift in Sources */,
+				BC9B0DB603A191A47BBE7D09 /* ParentGateView.swift in Sources */,
+				DD2A1723BF71BF1219CD3DA9 /* ParentSettingsView.swift in Sources */,
+				4BD67D03B73C905CBC8CE03B /* PersistenceController.swift in Sources */,
+				7C65D27697F3B954F673985F /* PrivacyView.swift in Sources */,
+				06D05268B0C86B796EE76A9A /* RewardRepository.swift in Sources */,
+				70AE44BAB2E5458214F15172 /* RewardingSystemApp.swift in Sources */,
+				5E38798F5574A28AAB8CF4D2 /* RewardsAdminView.swift in Sources */,
+				7CD8A5792B6B9D909FCB0ACF /* RoleManager.swift in Sources */,
+				CC84ABC7F6F0E264A18D0996 /* RootView.swift in Sources */,
+				BA1CC2280814A5FDD2BB7A3E /* RulesAdminView.swift in Sources */,
+				922DFC79D80869DC68028188 /* SchemaVersions.swift in Sources */,
+				B479BA8BFAA57E4805979E2A /* ScoreEntryView.swift in Sources */,
+				1D723B6D2C5C82F9687FB1C9 /* ScoreSummary.swift in Sources */,
+				C1666DB82989716956EA84EB /* SharedComponents.swift in Sources */,
+				9768E9335D00A0AE8DB2A20B /* SwiftDataModels.swift in Sources */,
+				6AA305C29DD67519C99AE8BE /* Theme.swift in Sources */,
+				3DF248F5171D5F2C032F4BC8 /* TrendChart.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		16BA6190772DFEAEDCFBAE66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D4564D179C53179D6BF6553 /* RewardingSystem */;
+			targetProxy = DE52CE391824478CE438E234 /* PBXContainerItemProxy */;
+		};
+		95FF99BF631BAE7B2DE90FB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D4564D179C53179D6BF6553 /* RewardingSystem */;
+			targetProxy = 22A3BC246A73253173A57C56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E7F0F9E1A244AAFCDE0098D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rewardingsystem.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RewardingSystem.app/RewardingSystem";
+			};
+			name = Debug;
+		};
+		42014953B407DFBCE09FC9B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7216232147FD4E614CF69F3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rewardingsystem.app.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RewardingSystem;
+			};
+			name = Debug;
+		};
+		9088F2500B9660A2FFCC408C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "行为奖励";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "用于家长快速、安全地解锁管理权限。";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rewardingsystem.app;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1046F0196958B28B2BBCF86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AB32BE35C8EFE98B30E1FF8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rewardingsystem.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RewardingSystem.app/RewardingSystem";
+			};
+			name = Release;
+		};
+		C23459DD098B88E862FE6EA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rewardingsystem.app.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RewardingSystem;
+			};
+			name = Release;
+		};
+		D79D846CF93C86510B4D98B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "行为奖励";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "用于家长快速、安全地解锁管理权限。";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rewardingsystem.app;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0B0D4E4D51EC2A1A90D17F66 /* Build configuration list for PBXNativeTarget "RewardingSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9088F2500B9660A2FFCC408C /* Debug */,
+				D79D846CF93C86510B4D98B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		31E4C77C090E3E1FC2BC76AA /* Build configuration list for PBXProject "RewardingSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42014953B407DFBCE09FC9B6 /* Debug */,
+				A1046F0196958B28B2BBCF86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DD86EE212A2D75F6334E9836 /* Build configuration list for PBXNativeTarget "RewardingSystemUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7216232147FD4E614CF69F3E /* Debug */,
+				C23459DD098B88E862FE6EA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FF7D9BA590D2BFC763E7EA9C /* Build configuration list for PBXNativeTarget "RewardingSystemTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E7F0F9E1A244AAFCDE0098D /* Debug */,
+				AB32BE35C8EFE98B30E1FF8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		F286239F5219BF69E9078BE3 /* XCLocalSwiftPackageReference "RewardCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = RewardCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EEA29D578E756294DBEA8CA /* RewardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RewardCore;
+		};
+		F6B037C2CBAC0A61A789B639 /* RewardCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RewardCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3AA89AD10CC49BE3D4FDBEBA /* Project object */;
+}

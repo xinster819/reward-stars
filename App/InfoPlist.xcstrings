@@ -1,0 +1,16 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Reward Stars" }
+        },
+        "zh-Hans" : {
+          "stringUnit" : { "state" : "translated", "value" : "行为奖励" }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

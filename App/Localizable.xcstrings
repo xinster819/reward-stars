@@ -1,0 +1,1807 @@
+{
+  "sourceLanguage": "zh-Hans",
+  "strings": {
+    "": {},
+    "%@的总览": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@'s Overview"
+          }
+        }
+      }
+    },
+    "%lld": {},
+    "%lld / %lld": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "%lld 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld pts"
+          }
+        }
+      }
+    },
+    "%lld 分 · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld pts · %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld 分 · %2$@"
+          }
+        }
+      }
+    },
+    "· %@": {},
+    "「行为奖励」是一款纯本地应用，不采集、不上传、不共享任何个人信息。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reward Stars is a fully on-device app. It collects, transmits, and shares no personal information."
+          }
+        }
+      }
+    },
+    "下一个目标": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next goal"
+          }
+        }
+      }
+    },
+    "不可用": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unavailable"
+          }
+        }
+      }
+    },
+    "今天": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
+    "你好，%@！": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hi, %@!"
+          }
+        }
+      }
+    },
+    "使用 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use %@"
+          }
+        }
+      }
+    },
+    "例如：主动帮妈妈摆碗筷": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e.g. Helped set the table"
+          }
+        }
+      }
+    },
+    "例如：看 30 分钟电视": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e.g. 30 min of TV"
+          }
+        }
+      }
+    },
+    "例如：认真完成作业": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e.g. Did homework carefully"
+          }
+        }
+      }
+    },
+    "保存": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "修改 PIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change PIN"
+          }
+        }
+      }
+    },
+    "修改家长 PIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change parent PIN"
+          }
+        }
+      }
+    },
+    "兑换": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redeem"
+          }
+        }
+      }
+    },
+    "全部流水": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All activity"
+          }
+        }
+      }
+    },
+    "全部目标达成": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All goals reached"
+          }
+        }
+      }
+    },
+    "全部记录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All records"
+          }
+        }
+      }
+    },
+    "关于": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About"
+          }
+        }
+      }
+    },
+    "再得 %lld 分就能解锁啦！": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld more points to unlock!"
+          }
+        }
+      }
+    },
+    "再次输入": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Re-enter"
+          }
+        }
+      }
+    },
+    "分值": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points"
+          }
+        }
+      }
+    },
+    "分数": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points"
+          }
+        }
+      }
+    },
+    "分类净得": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By category"
+          }
+        }
+      }
+    },
+    "加分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reward"
+          }
+        }
+      }
+    },
+    "历史": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        }
+      }
+    },
+    "历史与统计": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History & Stats"
+          }
+        }
+      }
+    },
+    "取消": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "可用（%@）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available (%@)"
+          }
+        }
+      }
+    },
+    "名称": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "图标": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icon"
+          }
+        }
+      }
+    },
+    "备注（可选）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note (optional)"
+          }
+        }
+      }
+    },
+    "太厉害啦，所有里程碑都拿到了 🎉": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Awesome — all milestones unlocked! 🎉"
+          }
+        }
+      }
+    },
+    "奖励": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rewards"
+          }
+        }
+      }
+    },
+    "奖励商店": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reward Store"
+          }
+        }
+      }
+    },
+    "奖励目录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reward list"
+          }
+        }
+      }
+    },
+    "奖惩规则": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules"
+          }
+        }
+      }
+    },
+    "孩子": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Child"
+          }
+        }
+      }
+    },
+    "孩子名字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Child's name"
+          }
+        }
+      }
+    },
+    "完成": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "家长入口": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent access"
+          }
+        }
+      }
+    },
+    "家长安全": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent security"
+          }
+        }
+      }
+    },
+    "家长设置": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent Settings"
+          }
+        }
+      }
+    },
+    "家长验证": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent verification"
+          }
+        }
+      }
+    },
+    "将清空全部记分流水与兑换记录，总分归零；规则与奖励目录保留。此操作不可撤销。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This clears all score activity and redemptions and resets the total to zero. Rules and rewards are kept. This can't be undone."
+          }
+        }
+      }
+    },
+    "将清空全部记录、恢复默认规则与奖励、积分归零。此操作不可撤销。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This clears all records, restores the default rules and rewards, and resets points to zero. This can't be undone."
+          }
+        }
+      }
+    },
+    "将用最近一次备份覆盖当前数据。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This overwrites current data with the most recent backup."
+          }
+        }
+      }
+    },
+    "尝试次数过多，请 %lld 秒后再试": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too many attempts. Try again in %lld seconds."
+          }
+        }
+      }
+    },
+    "已获 %lld 枚徽章": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld badges earned"
+          }
+        }
+      }
+    },
+    "带备注记一次…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record with a note…"
+          }
+        }
+      }
+    },
+    "当前总分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total"
+          }
+        }
+      }
+    },
+    "当前总分 %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total: %lld"
+          }
+        }
+      }
+    },
+    "当前：%@ 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current: %@ pts"
+          }
+        }
+      }
+    },
+    "待审批": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending"
+          }
+        }
+      }
+    },
+    "待审批兑换": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending redemptions"
+          }
+        }
+      }
+    },
+    "总分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total"
+          }
+        }
+      }
+    },
+    "总览": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overview"
+          }
+        }
+      }
+    },
+    "恢复": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore"
+          }
+        }
+      }
+    },
+    "恢复最近备份": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore latest backup"
+          }
+        }
+      }
+    },
+    "恢复最近备份？": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore latest backup?"
+          }
+        }
+      }
+    },
+    "我有 %lld 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I have %lld pts"
+          }
+        }
+      }
+    },
+    "我的兑换申请": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My redemptions"
+          }
+        }
+      }
+    },
+    "我的徽章": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Badges"
+          }
+        }
+      }
+    },
+    "我的积分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Points"
+          }
+        }
+      }
+    },
+    "我的记录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Activity"
+          }
+        }
+      }
+    },
+    "所需积分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cost (points)"
+          }
+        }
+      }
+    },
+    "扣分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penalty"
+          }
+        }
+      }
+    },
+    "描述（可选）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description (optional)"
+          }
+        }
+      }
+    },
+    "撤销": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        }
+      }
+    },
+    "撤销最近": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo last"
+          }
+        }
+      }
+    },
+    "撤销最近一次记分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo last entry"
+          }
+        }
+      }
+    },
+    "数据": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        }
+      }
+    },
+    "数据备份": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data backup"
+          }
+        }
+      }
+    },
+    "新 PIN（4 位数字）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New PIN (4 digits)"
+          }
+        }
+      }
+    },
+    "新增奖励": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New reward"
+          }
+        }
+      }
+    },
+    "新增规则": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New rule"
+          }
+        }
+      }
+    },
+    "日期": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        }
+      }
+    },
+    "明确描述规则细节，例如：作业字迹工整、独立完成、按时交…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Describe the rule — e.g. neat handwriting, done independently, turned in on time…"
+          }
+        }
+      }
+    },
+    "暂时还没有奖励": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rewards yet"
+          }
+        }
+      }
+    },
+    "最后更新：2026-06-21": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last updated: 2026-06-21"
+          }
+        }
+      }
+    },
+    "最近表现": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent activity"
+          }
+        }
+      }
+    },
+    "最近记录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent activity"
+          }
+        }
+      }
+    },
+    "本周 %lld / %lld 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week %lld / %lld pts"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "本周 %1$lld / %2$lld 分"
+          }
+        }
+      }
+    },
+    "本周净得": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week"
+          }
+        }
+      }
+    },
+    "本周趋势": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week's trend"
+          }
+        }
+      }
+    },
+    "没有记录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No records"
+          }
+        }
+      }
+    },
+    "清零": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        }
+      }
+    },
+    "点头像可换照片": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the avatar to change the photo"
+          }
+        }
+      }
+    },
+    "版本": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        }
+      }
+    },
+    "生物识别": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biometrics"
+          }
+        }
+      }
+    },
+    "积分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points"
+          }
+        }
+      }
+    },
+    "积分不足（需 %lld，余 %lld）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough points (need %lld, have %lld)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "积分不足（需 %1$lld，余 %2$lld）"
+          }
+        }
+      }
+    },
+    "积分清零": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset points to zero"
+          }
+        }
+      }
+    },
+    "积分清零？": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset points to zero?"
+          }
+        }
+      }
+    },
+    "立即备份数据": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back up now"
+          }
+        }
+      }
+    },
+    "第一版仅管理一个孩子，全部数据离线存储在本机。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This version manages one child. All data is stored locally on this device."
+          }
+        }
+      }
+    },
+    "等家长确认": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Awaiting parent"
+          }
+        }
+      }
+    },
+    "筛选": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
+          }
+        }
+      }
+    },
+    "类别": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Category"
+          }
+        }
+      }
+    },
+    "类型": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
+          }
+        }
+      }
+    },
+    "编辑奖励": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit reward"
+          }
+        }
+      }
+    },
+    "编辑规则": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit rule"
+          }
+        }
+      }
+    },
+    "行为": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behavior"
+          }
+        }
+      }
+    },
+    "规则": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules"
+          }
+        }
+      }
+    },
+    "记一次": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record"
+          }
+        }
+      }
+    },
+    "记一次分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record a score"
+          }
+        }
+      }
+    },
+    "记分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Score"
+          }
+        }
+      }
+    },
+    "记录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity"
+          }
+        }
+      }
+    },
+    "请输入家长 PIN 进入管理界面": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter the parent PIN to manage settings"
+          }
+        }
+      }
+    },
+    "输入新 PIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter new PIN"
+          }
+        }
+      }
+    },
+    "近 %lld 天趋势": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last %lld days"
+          }
+        }
+      }
+    },
+    "还差 %lld 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld pts to go"
+          }
+        }
+      }
+    },
+    "还没有启用的规则，请到「规则」页添加": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No active rules yet. Add some on the Rules tab."
+          }
+        }
+      }
+    },
+    "还没有奖励，点右上角 + 添加": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rewards yet. Tap + to add one."
+          }
+        }
+      }
+    },
+    "还没有徽章，继续加油就能拿到！": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No badges yet — keep going to earn them!"
+          }
+        }
+      }
+    },
+    "还没有规则，点右上角 + 添加": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rules yet. Tap + to add one."
+          }
+        }
+      }
+    },
+    "还没有记录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No records yet"
+          }
+        }
+      }
+    },
+    "连击天数": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streak"
+          }
+        }
+      }
+    },
+    "连续 %lld 天表现棒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-day streak"
+          }
+        }
+      }
+    },
+    "退出后回到孩子（只读）界面。再次进入家长界面需输入 PIN。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exits to the child (read-only) screen. Re-entering parent mode needs the PIN."
+          }
+        }
+      }
+    },
+    "退出家长模式": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exit parent mode"
+          }
+        }
+      }
+    },
+    "重置": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        }
+      }
+    },
+    "重置为初始状态": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset to defaults"
+          }
+        }
+      }
+    },
+    "重置为初始状态？": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset to defaults?"
+          }
+        }
+      }
+    },
+    "隐私政策": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy Policy"
+          }
+        }
+      }
+    },
+    "学习": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learning"
+          }
+        }
+      }
+    },
+    "生活": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Life"
+          }
+        }
+      }
+    },
+    "品德": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Character"
+          }
+        }
+      }
+    },
+    "其他": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        }
+      }
+    },
+    "待确认": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending"
+          }
+        }
+      }
+    },
+    "已兑换": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redeemed"
+          }
+        }
+      }
+    },
+    "已驳回": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Declined"
+          }
+        }
+      }
+    },
+    "起步星": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rising Star"
+          }
+        }
+      }
+    },
+    "百分达人": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Centurion"
+          }
+        }
+      }
+    },
+    "超级明星": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superstar"
+          }
+        }
+      }
+    },
+    "积分大师": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Points Master"
+          }
+        }
+      }
+    },
+    "三连击": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3-Day Streak"
+          }
+        }
+      }
+    },
+    "七日坚持": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-Day Streak"
+          }
+        }
+      }
+    },
+    "累计获得 50 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earned 50 points total"
+          }
+        }
+      }
+    },
+    "累计获得 100 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earned 100 points total"
+          }
+        }
+      }
+    },
+    "累计获得 200 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earned 200 points total"
+          }
+        }
+      }
+    },
+    "累计获得 500 分": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earned 500 points total"
+          }
+        }
+      }
+    },
+    "连续 3 天表现棒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 great days in a row"
+          }
+        }
+      }
+    },
+    "连续 7 天表现棒": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7 great days in a row"
+          }
+        }
+      }
+    },
+    "认真完成作业": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Did homework carefully"
+          }
+        }
+      }
+    },
+    "主动阅读 30 分钟": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read for 30 minutes"
+          }
+        }
+      }
+    },
+    "自己整理房间": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidied own room"
+          }
+        }
+      }
+    },
+    "按时起床睡觉": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up & to bed on time"
+          }
+        }
+      }
+    },
+    "帮忙做家务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helped with chores"
+          }
+        }
+      }
+    },
+    "有礼貌、主动分享": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polite & shared"
+          }
+        }
+      }
+    },
+    "拖延磨蹭": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dawdling"
+          }
+        }
+      }
+    },
+    "顶撞父母": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Talked back"
+          }
+        }
+      }
+    },
+    "其他好表现": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other good behavior"
+          }
+        }
+      }
+    },
+    "看 30 分钟电视": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "30 min of TV"
+          }
+        }
+      }
+    },
+    "玩 30 分钟游戏": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "30 min of games"
+          }
+        }
+      }
+    },
+    "一支冰淇淋": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An ice cream"
+          }
+        }
+      }
+    },
+    "挑一本新书": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick a new book"
+          }
+        }
+      }
+    },
+    "周末去公园": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Park on the weekend"
+          }
+        }
+      }
+    },
+    "宝贝": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Child"
+          }
+        }
+      }
+    },
+    "兑换奖励": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redeem rewards"
+          }
+        }
+      }
+    },
+    "家长 PIN（4 位数字）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent PIN (4 digits)"
+          }
+        }
+      }
+    },
+    "保存失败，请重试": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't save. Please try again."
+          }
+        }
+      }
+    },
+    "开始": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        }
+      }
+    },
+    "跳过": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip"
+          }
+        }
+      }
+    },
+    "继续": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "欢迎使用「行为奖励」": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to Reward Stars"
+          }
+        }
+      }
+    },
+    "用星星鼓励好行为": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encourage good behavior with stars"
+          }
+        }
+      }
+    },
+    "两种模式": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Two modes"
+          }
+        }
+      }
+    },
+    "家长用 PIN 进入设规则、记分、管奖励；孩子看到只读的今日进度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parents enter with a PIN to set rules, score, and manage rewards; kids see a read-only view of today"
+          }
+        }
+      }
+    },
+    "按你定的规则给孩子加减星星": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add or remove stars based on the rules you set"
+          }
+        }
+      }
+    },
+    "攒够星星就能兑换你设置的奖励": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved-up stars can be redeemed for rewards you set"
+          }
+        }
+      }
+    },
+    "开始设置": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set up"
+          }
+        }
+      }
+    },
+    "孩子的名字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Child's name"
+          }
+        }
+      }
+    },
+    "给孩子取个名字": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name your child"
+          }
+        }
+      }
+    },
+    "输入 PIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter PIN"
+          }
+        }
+      }
+    },
+    "联系我们": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contact us"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
