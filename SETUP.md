@@ -140,7 +140,11 @@ gh api -X POST repos/{owner}/reward-stars-privacy/pages -f 'source[branch]=main'
 
 ## 10. Web/PWA 版上线（Phase 4，替代 App Store 路线）
 
-> Web 版在 `web/`，无账号也能跑（本地演示模式）。要**家庭多设备共享**需完成 A+B；C 可选。
+> ✅ **已全部完成上线（2026-07-03）**：正式地址 **https://eduinspire.fun**（大陆移动网络实测可用）；
+> 备用地址 https://reward-stars.vercel.app（大陆运营商可能拦截，海外/代理可用）。
+> 架构：域名（腾讯云，年费 ¥10 起，无需备案）→ Vercel（托管，push main 自动部署）→ Supabase（数据库）。
+> 全家使用：每台设备打开正式地址 → 登录同一家庭账号 → Safari 分享 → 添加到主屏幕。
+> 下面 A–D 为当时的操作步骤，留作重建参考。
 > 本地试跑：`cd web && pnpm install && pnpm dev` → 浏览器开 http://localhost:5173。
 
 ### A. Supabase（云数据库 + 账号，免费档足够）

@@ -19,7 +19,9 @@
 - 采用多期自治开发宪章（DECISIONS D20）。
 物理阻塞（用户侧，见 [tasks.md](tasks.md) B / CLAUDE.md 顶部清单）：开发者账号、App Store Connect、中国区软著+备案。
 
-## Phase 4 — Web/PWA 迁移（当前，2026-07-02 起，用户 /goal）
+## Phase 4 — Web/PWA 迁移（✅ 完成，2026-07-02 ~ 07-03，用户 /goal）
+**成果：https://eduinspire.fun 上线，移动网络实测可用（用户确认）。** iPad 历史数据已无损迁云。详见 HANDOFF / tasks E 节。
+
 背景：无 iOS 开发者账号，免费签名 7 天过期 → 原生 App 无法长期稳定使用。用户定向：核心功能迁 Web/PWA，**保留**产品逻辑/数据结构/页面流程/业务模型；**替换**原生 UI→Web UI、本地 SQLite→云数据库、单机→多人共享；部署 Vercel/CF Pages + Supabase/Firebase + 自定义域名，Safari 加主屏。
 范围与决策：见 DECISIONS **D23–D25**（Vite+React+TS SPA / Supabase(Postgres+RLS) / 家庭账号+PIN 角色门禁 / 存储抽象层：local 适配器无账号可全量验证）。iOS 工程保留不动（冻结）。
 物理阻塞（用户侧，汇总 SETUP.md）：Supabase 项目创建 + Vercel/CF 账号 + 自定义域名。
