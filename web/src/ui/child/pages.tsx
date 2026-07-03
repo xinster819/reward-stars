@@ -4,7 +4,7 @@ import { useApp, useData, useSummary } from '../../state/app'
 import { affordableRewards, canAfford, pointsNeeded } from '../../domain/redemptionPolicy'
 import { redemptionStatusDisplayName } from '../../domain/types'
 import { BadgeChip, EmptyHint, EventRow, PointPill, PrimaryButton, ProgressRing, SectionCard, TrendChart } from '../components'
-import { SymbolIcon } from '../symbols'
+import { Avatar, SymbolIcon } from '../symbols'
 
 export function ChildToday() {
   const { t } = useApp()
@@ -15,7 +15,7 @@ export function ChildToday() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3 pt-2">
-        <span className="text-4xl"><SymbolIcon name={snap.child?.avatarSymbol ?? 'DefaultAvatar'} /></span>
+        <Avatar symbol={snap.child?.avatarSymbol ?? 'DefaultAvatar'} sizeClass="w-12 h-12 text-4xl" />
         <h1 className="text-xl font-bold text-gray-800">{t('你好，{name}', { name: snap.child?.name ?? '' })}</h1>
       </div>
 

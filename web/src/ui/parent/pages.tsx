@@ -8,7 +8,7 @@ import { ALL_CATEGORIES, categoryDisplayName, RULE_DETAILS_MAX_LENGTH } from '..
 import { netPoints, currentWeekInterval } from '../../domain/scoringEngine'
 import type { RuleInput, RewardInput } from '../../data/repository'
 import { CategoryChip, EmptyHint, EventRow, Modal, PointPill, PrimaryButton, SectionCard, TrendChart } from '../components'
-import { PICKABLE_SYMBOLS, SymbolIcon } from '../symbols'
+import { Avatar, AVATAR_EMOJI_SYMBOLS, fileToAvatarDataURL, PICKABLE_SYMBOLS, SymbolIcon } from '../symbols'
 import { sanitizedPIN } from '../onboarding/Onboarding'
 
 /** 数字输入：valueAsNumber（locale 无关）+ isFinite + 整数 + 区间闸（教训 #8）。 */
@@ -487,6 +487,7 @@ export function ParentSettings({ open, onClose }: { open: boolean; onClose: () =
   const [name, setName] = useState('')
   const [showChangePin, setShowChangePin] = useState(false)
   const fileInput = useRef<HTMLInputElement | null>(null)
+  const avatarInput = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
     if (open) setName(snap.child?.name ?? '')
@@ -540,6 +541,36 @@ export function ParentSettings({ open, onClose }: { open: boolean; onClose: () =
       <div className="flex flex-col gap-4">
         <div>
           <h3 className="text-sm text-gray-400 mb-2">{t('孩子')}</h3>
+          <div className="flex items-center gap-3 mb-3">
+            <Avatar symbol={snap.child?.avatarSymbol ?? 'DefaultAvatar'} sizeClass="w-14 h-14 text-5xl" />
+            <button className="rounded-xl bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700" onClick={() => avatarInput.current?.click()}>
+              📷 {t('上传照片')}
+            </button>
+            <input
+              ref={avatarInput} type="file" accept="image/*" hidden
+              onChange={async (e) => {
+                const f = e.target.files?.[0]
+                if (!f) return
+                try {
+                  await repo.setAvatar(await fileToAvatarDataURL(f))
+                } catch {
+                  window.alert('Invalid image')
+                }
+                e.target.value = ''
+              }}
+            />
+          </div>
+          <div className="flex gap-1.5 flex-wrap mb-3">
+            {AVATAR_EMOJI_SYMBOLS.map((s) => (
+              <button
+                key={s}
+                onClick={() => void repo.setAvatar(s)}
+                className={`w-10 h-10 rounded-full text-xl flex items-center justify-center ${snap.child?.avatarSymbol === s ? 'bg-accent/20 ring-2 ring-accent' : 'bg-gray-50'}`}
+              >
+                <SymbolIcon name={s} />
+              </button>
+            ))}
+          </div>
           <div className="flex gap-2">
             <input value={name} onChange={(e) => setName(e.target.value)} className="flex-1 rounded-2xl border border-gray-200 px-4 py-3" placeholder={t('名字')} />
             <PrimaryButton onClick={() => void repo.renameChild(name)}>{t('保存')}</PrimaryButton>

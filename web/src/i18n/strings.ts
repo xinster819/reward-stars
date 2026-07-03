@@ -109,6 +109,7 @@ const EN: Record<string, string> = {
   // 设置
   孩子: 'Child',
   名字: 'Name',
+  上传照片: 'Upload photo',
   安全: 'Security',
   数据: 'Data',
   清空积分记录: 'Clear score history',
