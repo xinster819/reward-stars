@@ -1,12 +1,16 @@
 # 行为奖励 · RewardingSystem
 
-一个面向家庭的 **孩子行为奖惩 iOS App**（universal，适配 iPhone + iPad）。用积分记录、引导孩子日常学习与生活中的好/坏行为，配合"代币经济 + 轻量游戏化"帮助养成规范习惯。
+一个面向家庭的 **孩子行为奖惩 App**。用积分记录、引导孩子日常学习与生活中的好/坏行为，配合"代币经济 + 轻量游戏化"帮助养成规范习惯。
 
-- 纯本地、离线，无需后端；数据存在本机（SwiftData）。
+**两个实现，同一套产品逻辑与数据模型：**
+
+- **Web/PWA 版（`web/`，当前主线，Phase 4）**：React + Supabase，家庭多设备共享（一个账号=一个家庭），Safari「添加到主屏幕」即像 App 使用；无云端配置时自动落本地演示模式。运行/部署见 **[web/README.md](web/README.md)** 与 **[SETUP.md §10](SETUP.md)**。
+- **iOS 原生版（本目录，冻结保留）**：SwiftUI + SwiftData，纯本地离线。因无 Apple 开发者账号（免费签名 7 天过期）不再作为分发主线。
+
 - 第一版只管理**一个孩子**，但数据结构已为将来多孩子预留（每条数据带 `childID`）。
-- 家长（完整权限）/ 孩子（只读）双角色，家长入口受 PIN / 生物识别保护。
+- 家长（完整权限）/ 孩子（只读）双角色，家长入口受 PIN（iOS 另有生物识别）保护。
 
-> 安装到真机的完整步骤见 **[SETUP.md](SETUP.md)**；所有自主设计决策见 **[DECISIONS.md](DECISIONS.md)**；需求规范见 **[Project_brief.md](Project_brief.md)**。
+> iOS 装机步骤见 **[SETUP.md](SETUP.md)**；所有自主设计决策见 **[DECISIONS.md](DECISIONS.md)**；需求规范见 **[Project_brief.md](Project_brief.md)**。以下章节描述 iOS 原生版。
 
 ---
 

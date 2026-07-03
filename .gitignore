@@ -21,3 +21,6 @@ Package.resolved
 
 # Real/private source assets — never commit (real photos etc. stay local only)
 assets-src/
+
+# Claude Code 运行时文件
+.claude/scheduled_tasks.lock

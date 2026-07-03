@@ -1,0 +1,201 @@
+// 双语词典：zh-Hans 为源语言（key 即中文，对位 iOS Localizable.xcstrings 机制），en 为译文。
+// 领域字符串（徽章/类目/示例规则名）同样走 loc()（对位 DomainLocalization）。
+
+export type Language = 'zh' | 'en'
+
+const EN: Record<string, string> = {
+  // Tab / 标题
+  今天: 'Today',
+  奖励: 'Rewards',
+  记录: 'Activity',
+  总览: 'Overview',
+  记分: 'Scoring',
+  规则: 'Rules',
+  历史: 'History',
+  我的积分: 'My Points',
+  我的记录: 'My Activity',
+  奖励商店: 'Reward Store',
+  家长设置: 'Parent Settings',
+  设置: 'Settings',
+  // 动作
+  兑换: 'Redeem',
+  记一次: 'Record',
+  保存: 'Save',
+  取消: 'Cancel',
+  完成: 'Done',
+  撤销: 'Undo',
+  撤销最近一次记分: 'Undo last record',
+  添加: 'Add',
+  删除: 'Delete',
+  编辑: 'Edit',
+  确认: 'Confirm',
+  通过: 'Approve',
+  驳回: 'Reject',
+  退出家长模式: 'Exit parent mode',
+  家长入口: 'Parent access',
+  // 门禁
+  家长验证: 'Parent verification',
+  '请输入家长 PIN 进入管理界面': 'Enter parent PIN to access admin',
+  '修改家长 PIN': 'Change parent PIN',
+  '输入 PIN': 'Enter PIN',
+  '输入新 PIN': 'New PIN',
+  再次输入: 'Re-enter',
+  'PIN 不一致': "PINs don't match",
+  '尝试次数过多，请 {n} 秒后再试': 'Too many attempts. Try again in {n} sec.',
+  'PIN 已更新': 'PIN updated',
+  '当前 PIN': 'Current PIN',
+  'PIN 错误': 'Wrong PIN',
+  // 引导
+  '欢迎使用「行为奖励」': 'Welcome to Reward Stars',
+  用星星鼓励好行为: 'Encourage good behavior with stars',
+  两种模式: 'Two modes',
+  '孩子看进度，家长来管理': 'Kids track progress, parents manage',
+  '选行为，记一分': 'Pick a behavior, record a point',
+  '好行为加分，坏习惯减分': 'Good behavior earns, bad habits cost',
+  兑换奖励: 'Reward redemption',
+  '攒够星星，换心愿礼物': 'Save up stars for wishes',
+  跳过: 'Skip',
+  继续: 'Continue',
+  开始设置: 'Start setup',
+  开始: 'Start',
+  给孩子取个名字: "Child's name",
+  孩子的名字: "Child's name",
+  '家长 PIN（4 位数字）': 'Parent PIN (4 digits)',
+  '名字不能为空': 'Name is required',
+  '请输入 4 位数字 PIN': 'Enter a 4-digit PIN',
+  // 孩子端
+  '你好，{name}': 'Hi, {name}',
+  当前总分: 'Total',
+  本周净得: 'Weekly net',
+  连击天数: 'Streak',
+  待审批: 'Pending',
+  下一个目标: 'Next goal',
+  '还差 {n} 分解锁！': '{n} more to unlock!',
+  '🎉 全部达成！': '🎉 All achieved!',
+  我的徽章: 'My Badges',
+  '还没有徽章，继续加油就能拿到！': 'No badges yet — keep going!',
+  最近记录: 'Recent Activity',
+  还没有记录: 'No activity yet',
+  '我有 {n} 分': 'I have {n} points',
+  '还差 {n} 分': 'Need {n} more',
+  等家长确认: 'Awaiting approval',
+  我的兑换: 'My Redemptions',
+  近七天趋势: '7-Day Trend',
+  全部记录: 'All Records',
+  // 家长端
+  待审批兑换: 'Pending Redemptions',
+  '积分不足（需 {need}，余 {have}）': 'Insufficient ({need} needed, {have} left)',
+  加分行为: 'Reward behaviors',
+  扣分行为: 'Penalty behaviors',
+  '已记录 {points} · {name}': 'Recorded {points} · {name}',
+  按类目: 'By Category',
+  全部: 'All',
+  规则名称: 'Rule name',
+  '说明（可选）': 'Description (optional)',
+  类目: 'Category',
+  分值: 'Points',
+  奖励名称: 'Reward name',
+  所需积分: 'Cost',
+  '奖 / 扣': 'Reward / Penalty',
+  加分: 'Reward',
+  扣分: 'Penalty',
+  新增规则: 'New rule',
+  编辑规则: 'Edit rule',
+  新增奖励: 'New reward',
+  编辑奖励: 'Edit reward',
+  '备注（可选）': 'Note (optional)',
+  例如今天主动整理了书桌: 'e.g. tidied the desk today',
+  停用: 'Inactive',
+  // 设置
+  孩子: 'Child',
+  名字: 'Name',
+  安全: 'Security',
+  数据: 'Data',
+  清空积分记录: 'Clear score history',
+  '清空后规则与奖励保留，流水与兑换将删除，且无法恢复。': 'Rules & rewards stay; history and redemptions will be permanently deleted.',
+  重置为示例数据: 'Reset to sample data',
+  '将删除全部数据并恢复到初始示例，无法恢复。': 'All data will be deleted and reset to the initial sample. This cannot be undone.',
+  导出备份: 'Export backup',
+  导入备份: 'Import backup',
+  '导入将覆盖当前全部数据，确定？': 'Import will overwrite all current data. Continue?',
+  关于: 'About',
+  联系我们: 'Contact us',
+  隐私政策: 'Privacy policy',
+  版本: 'Version',
+  语言: 'Language',
+  跟随系统: 'System',
+  中文: '中文',
+  English: 'English',
+  数据模式: 'Data mode',
+  '本地演示模式（数据仅存本机浏览器）': 'Local demo mode (data stays in this browser)',
+  '云端已连接（家庭多设备共享）': 'Cloud connected (shared across family devices)',
+  // 登录
+  登录: 'Sign in',
+  注册: 'Sign up',
+  邮箱: 'Email',
+  密码: 'Password',
+  '注册即创建一个家庭空间，全家设备用同一账号登录。': 'Signing up creates one family space; all family devices sign in with the same account.',
+  '注册成功：请先去邮箱点确认链接，再回来登录': 'Signed up! Confirm via the email we sent, then sign in.',
+  退出登录: 'Sign out',
+  '继续用本地模式': 'Continue in local mode',
+  // 状态
+  待确认: 'Pending',
+  已兑换: 'Redeemed',
+  已驳回: 'Rejected',
+  // 领域：类目
+  学习: 'Learning',
+  生活: 'Life',
+  品德: 'Character',
+  其他: 'Other',
+  // 领域：徽章
+  起步星: 'First Steps',
+  百分达人: 'Centurion',
+  超级明星: 'Super Star',
+  积分大师: 'Point Master',
+  三连击: '3-Day Streak',
+  七日坚持: '7-Day Streak',
+  '累计获得 50 分': 'Earn 50 points in total',
+  '累计获得 100 分': 'Earn 100 points in total',
+  '累计获得 200 分': 'Earn 200 points in total',
+  '累计获得 500 分': 'Earn 500 points in total',
+  '连续 3 天表现棒': '3 great days in a row',
+  '连续 7 天表现棒': '7 great days in a row',
+  // 领域：示例数据
+  宝贝: 'My Child',
+  小明: 'Sam',
+  认真完成作业: 'Finish homework carefully',
+  '主动阅读 30 分钟': 'Read for 30 minutes',
+  自己整理房间: 'Tidy own room',
+  按时起床睡觉: 'Up & to bed on time',
+  帮忙做家务: 'Help with chores',
+  '有礼貌、主动分享': 'Polite & shares',
+  拖延磨蹭: 'Dawdling',
+  顶撞父母: 'Talking back',
+  其他好表现: 'Other good behavior',
+  '看 30 分钟电视': '30 min of TV',
+  '玩 30 分钟游戏': '30 min of games',
+  一支冰淇淋: 'An ice cream',
+  挑一本新书: 'Pick a new book',
+  周末去公园: 'Weekend park trip',
+}
+
+export function detectLanguage(): Language {
+  const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('reward-stars-lang') : null
+  if (saved === 'zh' || saved === 'en') return saved
+  const nav = typeof navigator !== 'undefined' ? navigator.language : 'zh'
+  return nav.toLowerCase().startsWith('zh') ? 'zh' : 'en'
+}
+
+export function persistLanguage(lang: Language | null): void {
+  if (lang) localStorage.setItem('reward-stars-lang', lang)
+  else localStorage.removeItem('reward-stars-lang')
+}
+
+/** 翻译：zh 返回原文；en 查词典，缺失回退原文。{name} 占位符用 params 替换。 */
+export function translate(lang: Language, key: string, params?: Record<string, string | number>): string {
+  let s = lang === 'en' ? (EN[key] ?? key) : key
+  if (params) {
+    for (const [k, v] of Object.entries(params)) s = s.replaceAll(`{${k}}`, String(v))
+  }
+  return s
+}

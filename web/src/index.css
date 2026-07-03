@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  /* 对位 iOS Theme：accent 橙 / positive 绿 / negative 红 / 四类目色 */
+  --color-accent: #ff9500;
+  --color-positive: #34c759;
+  --color-negative: #ff3b30;
+  --color-cat-learning: #007aff;
+  --color-cat-life: #34c759;
+  --color-cat-character: #ff2d55;
+  --color-cat-other: #ff9500;
+  --color-page: #fff8f0;
+  --color-card: #ffffff;
+}
+
+html, body {
+  background-color: var(--color-page);
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+}
+.animate-shake { animation: shake 0.4s; }

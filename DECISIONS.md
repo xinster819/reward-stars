@@ -169,3 +169,26 @@
 **安全网**：重建前 `git bundle create --all` 全量备份到 scratchpad（**不推送**），可随时恢复旧历史/照片。
 **保留**：`docs/appstore/screenshots/` 的 20 张为 SampleData（无真实数据），照常公开。
 **备选（未采）**：私有仓库（最省事但用户要公开）、公开+filter-repo 清史（保留逐次提交但更复杂、历史仍可能残留）。
+
+## D23 — Phase 4 迁移 Web/PWA：技术栈（2026-07-02）
+**背景**：用户 /goal——无开发者账号致免费签名 7 天过期、原生 App 无法长期稳定用；迁 Web/PWA，保留产品逻辑/数据结构/页面流程/业务模型，换 Web UI + 云数据库 + 多人共享；Vercel/CF Pages + Supabase/Firebase + 自定义域名 + Safari 加主屏。
+**决策**：
+1. **前端 = Vite + React 18 + TypeScript 纯 SPA**（新目录 `web/`，与 iOS 工程同仓共存、iOS 侧冻结不动）。无 SSR 需求（应用在登录后、无 SEO），纯静态产物 Vercel/CF Pages 都零配置。**Tailwind CSS** 快速复刻 Theme；**React Router**；**vite-plugin-pwa** 出 manifest+SW（Safari 加主屏）；**vitest** 承接领域单测（对位 `swift test`）。
+2. **数据库 = Supabase（Postgres + RLS + Realtime）**，非 Firebase。理由：用户目标"保留现有数据结构"——现模型是关系型（Child/Rule/ScoreEvent/Reward/Redemption + childID 外键 + 快照列），Postgres 1:1 平移；Firestore 文档模型要重建模，违背目标。RLS 表达家庭隔离比 Firestore rules 直观；开源可迁出。
+3. **部署首选 Vercel**（Vite 零配置），CF Pages 步骤同文档并列；自定义域名在平台面板绑定（用户物理项）。
+**备选（未采）**：Next.js（重、SSR 无用）、SvelteKit（生态小）、Firebase（重建模+锁定）。
+**环境事实**：本机无 docker/supabase CLI → 云端行为无法本地实测，见 D25 的抽象层对策。
+
+## D24 — 家庭共享与角色模型（Web 版）（2026-07-02）
+**决策**：**一个家庭 = 一个 Supabase 账号**（email+密码）。登录即家庭空间；全部业务行带 `family_id`（RLS 按 `auth.uid()` 隔离）+ 沿用 `child_id`。**家长/孩子角色完全沿用 iOS 业务模型**：任何已登录设备默认孩子（只读）视图，家长功能靠 **4 位 PIN**（盐+SHA-256，哈希存云端随家庭同步）解锁，5 错锁 30 秒照旧。孩子设备长期保持登录、停留孩子模式 → 多端共享达成。
+**理由**：完整保留既有角色/PIN 业务模型；避免给孩子建账号（未成年人合规负担）；一账号多设备即"家庭共享"，无需邀请/成员管理的复杂度（MVP）。
+**备选（未采）**：每成员一账号+family 成员表（复杂，D 期再说）、匿名登录（数据易丢）。
+**安全模型（明示，2026-07-03 评审确认）**：孩子设备共享家庭的已认证会话 → 家长/孩子之分是**纯客户端软防护**（懂技术的孩子理论上可经 REST 读到 `pin_blob` 离线爆破 4 位 PIN，或直接写数据）。这与 iOS 版"同一台设备上的 PIN 门禁"威胁模型一致（防的是孩子日常误触/偷改，不防懂逆向的攻击者），**接受**；若将来要硬隔离 → 升级为每成员一账号 + 角色列 + RLS 按角色限写。
+
+## D25 — 存储抽象层：云未接线也可全量验证（2026-07-02）
+**决策**：TS 定义 `RewardRepository` 接口（1:1 对位 iOS `RewardRepository` 的 mutation/query 语义：快照、软删除 isVoided、childID、seed/reset），两个适配器：
+1. **LocalAdapter**（localStorage，带版本号 JSON）——无任何账号/env 即完整可用（演示与开发模式），全部业务流可本地端到端验证；
+2. **SupabaseAdapter**——同接口；SQL 迁移 + RLS 策略随仓提交（`web/supabase/migrations/`），单测用 mock 客户端验 SQL 调用形状。
+App 启动时有 `VITE_SUPABASE_URL/ANON_KEY` 则走云，否则走本地演示模式。
+**理由**：宪章 §2（物理项不停下，占位跑通）+ 本机无 docker（D23）。**边界诚实**：RLS/Realtime 的真实行为在用户建好 Supabase 项目前标【未验证·待云端接线】，接线步骤进 SETUP.md。
+**备选（未采）**：只写云适配器（无账号则全程不可验证，违反完成铁律）、IndexedDB/Dexie（本项目数据量小，localStorage 够用且零依赖）。

@@ -19,5 +19,10 @@
 - 采用多期自治开发宪章（DECISIONS D20）。
 物理阻塞（用户侧，见 [tasks.md](tasks.md) B / CLAUDE.md 顶部清单）：开发者账号、App Store Connect、中国区软著+备案。
 
-## Phase 4+ — 增强（非上架阻塞，未排期）
-iCloud 同步（CloudKit）、多孩子放开（数据已就绪，需 UI + `@Query` 按 childID 过滤）、iPad 专属 NavigationSplitView。
+## Phase 4 — Web/PWA 迁移（当前，2026-07-02 起，用户 /goal）
+背景：无 iOS 开发者账号，免费签名 7 天过期 → 原生 App 无法长期稳定使用。用户定向：核心功能迁 Web/PWA，**保留**产品逻辑/数据结构/页面流程/业务模型；**替换**原生 UI→Web UI、本地 SQLite→云数据库、单机→多人共享；部署 Vercel/CF Pages + Supabase/Firebase + 自定义域名，Safari 加主屏。
+范围与决策：见 DECISIONS **D23–D25**（Vite+React+TS SPA / Supabase(Postgres+RLS) / 家庭账号+PIN 角色门禁 / 存储抽象层：local 适配器无账号可全量验证）。iOS 工程保留不动（冻结）。
+物理阻塞（用户侧，汇总 SETUP.md）：Supabase 项目创建 + Vercel/CF 账号 + 自定义域名。
+
+## Phase 5+ — 增强（未排期）
+多孩子放开（数据已就绪）、iOS 数据导入 Web 的迁移工具、iPad 专属 NavigationSplitView（如回归原生）。
