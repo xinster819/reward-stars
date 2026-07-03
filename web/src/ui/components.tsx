@@ -108,7 +108,7 @@ export function TrendChart({ trend }: { trend: DailyScore[] }) {
 }
 
 export function EventRow({ event }: { event: ScoreEvent }) {
-  const { lang, t } = useApp()
+  const { lang } = useApp()
   const timeText = event.timestamp.toLocaleString(lang === 'zh' ? 'zh-CN' : 'en-US', {
     month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit',
   })
@@ -116,7 +116,7 @@ export function EventRow({ event }: { event: ScoreEvent }) {
     <div className="flex items-center gap-3 py-2.5">
       <SymbolIcon name={event.category === 'other' ? 'star.fill' : `${event.category === 'learning' ? 'book.fill' : event.category === 'life' ? 'house.fill' : 'heart.fill'}`} className="text-xl" />
       <div className="flex-1 min-w-0">
-        <div className="font-medium text-gray-800 truncate">{t(event.ruleName)}</div>
+        <div className="font-medium text-gray-800 truncate">{event.ruleName}</div>
         <div className="text-xs text-gray-400">
           {timeText}
           {event.note ? ` · ${event.note}` : ''}

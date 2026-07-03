@@ -75,7 +75,7 @@ export function PendingRedemptions() {
             <div key={r.id} className="py-2.5">
               <div className="flex items-center justify-between gap-2">
                 <div>
-                  <div className="font-medium text-gray-800">{t(r.rewardName)}</div>
+                  <div className="font-medium text-gray-800">{r.rewardName}</div>
                   <div className="text-xs text-gray-400">-{r.cost} ⭐</div>
                 </div>
                 <div className="flex gap-2">
@@ -142,7 +142,7 @@ export function ParentScoring() {
 
   async function record(rule: BehaviorRule, withNote: string | null) {
     const ok = await repo.recordScore(rule.id, withNote)
-    if (ok) showBanner(rule.points, t(rule.name))
+    if (ok) showBanner(rule.points, rule.name)
   }
 
   const grid = (rules: BehaviorRule[]) => (
@@ -155,7 +155,7 @@ export function ParentScoring() {
           className="bg-card rounded-2xl p-3 flex flex-col items-center gap-1.5 shadow-sm active:scale-95 transition text-center"
         >
           <SymbolIcon name={r.iconName} className="text-3xl" />
-          <span className="text-sm font-medium text-gray-800">{t(r.name)}</span>
+          <span className="text-sm font-medium text-gray-800">{r.name}</span>
           <PointPill points={r.points} />
         </button>
       ))}
@@ -177,7 +177,7 @@ export function ParentScoring() {
       <SectionCard title={`🔴 ${t('扣分行为')}`}>{penalties.length ? grid(penalties) : <EmptyHint text={t('还没有记录')} />}</SectionCard>
       <p className="text-xs text-gray-400 text-center">{t('备注（可选）')}：长按 / 右键行为卡片</p>
 
-      <Modal open={noteFor !== null} onClose={() => setNoteFor(null)} title={noteFor ? t(noteFor.name) : ''}>
+      <Modal open={noteFor !== null} onClose={() => setNoteFor(null)} title={noteFor ? noteFor.name : ''}>
         {noteFor && (
           <div className="flex flex-col gap-3">
             <PointPill points={noteFor.points} />
@@ -215,15 +215,18 @@ export function ParentRules() {
         <div className="divide-y divide-gray-100">
           {rules.map((r) => (
             <div key={r.id} className="flex items-center gap-3 py-2.5">
-              <SymbolIcon name={r.iconName} className="text-2xl" />
-              <button className="flex-1 min-w-0 text-left" onClick={() => setEditing(r)}>
-                <div className={`font-medium truncate ${r.isActive ? 'text-gray-800' : 'text-gray-400 line-through'}`}>{t(r.name)}</div>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <CategoryChip category={r.category} />
-                  {r.details && <span className="text-xs text-gray-400 truncate">{r.details}</span>}
+              <button className="flex-1 min-w-0 text-left flex items-center gap-3" onClick={() => setEditing(r)}>
+                <SymbolIcon name={r.iconName} className="text-2xl" />
+                <div className="flex-1 min-w-0">
+                  <div className={`font-medium truncate ${r.isActive ? 'text-gray-800' : 'text-gray-400 line-through'}`}>{r.name}</div>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <CategoryChip category={r.category} />
+                    {r.details && <span className="text-xs text-gray-400 truncate">{r.details}</span>}
+                  </div>
                 </div>
+                <PointPill points={r.points} />
+                <span className="text-gray-300 text-sm" title={t('编辑')}>✏️</span>
               </button>
-              <PointPill points={r.points} />
               <input
                 type="checkbox"
                 checked={r.isActive}
@@ -351,11 +354,12 @@ export function ParentRewards() {
         <div className="divide-y divide-gray-100">
           {rewards.map((r) => (
             <div key={r.id} className="flex items-center gap-3 py-2.5">
-              <SymbolIcon name={r.iconName} className="text-2xl" />
-              <button className="flex-1 min-w-0 text-left" onClick={() => setEditing(r)}>
-                <span className={`font-medium ${r.isActive ? 'text-gray-800' : 'text-gray-400 line-through'}`}>{t(r.name)}</span>
+              <button className="flex-1 min-w-0 text-left flex items-center gap-3" onClick={() => setEditing(r)}>
+                <SymbolIcon name={r.iconName} className="text-2xl" />
+                <span className={`flex-1 min-w-0 truncate font-medium ${r.isActive ? 'text-gray-800' : 'text-gray-400 line-through'}`}>{r.name}</span>
+                <span className="text-accent font-bold">{r.cost} ⭐</span>
+                <span className="text-gray-300 text-sm" title={t('编辑')}>✏️</span>
               </button>
-              <span className="text-accent font-bold">{r.cost} ⭐</span>
               <input
                 type="checkbox"
                 checked={r.isActive}

@@ -91,7 +91,7 @@ export function ChildStore() {
             <SectionCard key={r.id}>
               <div className="flex flex-col items-center gap-2 text-center">
                 <SymbolIcon name={r.iconName} className={`text-4xl ${affordable.has(r.id) ? '' : 'grayscale opacity-60'}`} />
-                <div className="font-medium text-gray-800 text-sm">{t(r.name)}</div>
+                <div className="font-medium text-gray-800 text-sm">{r.name}</div>
                 <div className="text-accent font-bold">{r.cost} ⭐</div>
                 {pending ? (
                   <span className="text-xs text-gray-400">{t('等家长确认')}</span>
@@ -113,7 +113,7 @@ export function ChildStore() {
           <div className="divide-y divide-gray-100">
             {myRedemptions.map((r) => (
               <div key={r.id} className="flex items-center justify-between py-2.5">
-                <span className="font-medium text-gray-800">{t(r.rewardName)}</span>
+                <span className="font-medium text-gray-800">{r.rewardName}</span>
                 <span className="flex items-center gap-2 text-sm">
                   <span className="text-gray-400">-{r.cost}</span>
                   <span className={`rounded-full px-2 py-0.5 text-xs ${r.status === 'approved' ? 'bg-positive/15 text-positive' : r.status === 'rejected' ? 'bg-negative/15 text-negative' : 'bg-gray-100 text-gray-500'}`}>
