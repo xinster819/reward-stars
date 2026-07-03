@@ -16,8 +16,12 @@
 - [x] Supabase 建项目 + 跑 SQL + 关 Confirm email（用户完成，2026-07-03）；本地 `.env.local` 已配置（项目 `znxqlxxrqtajlaefiwnw`）。
 - [x] **云端全链路实测（2026-07-03，dev server 连真实 Supabase）**
       判据：✅ 注册即登录（auto-confirm）→ 云端 seed（1 孩子/9 规则/5 奖励，REST 直查确认落库）→ PIN blob 上云（64 字符）+ 门禁解锁 → 记分快照行入库 → 兑换 pending → **审批 RPC 实测**（服务端置 approved+decided_at，余额 30−20=10）→ **Realtime 跨设备同步实测**（REST 模拟另一设备插入 +5，页面 5 秒内自动 10→15）→ **RLS 隔离实测**（family2 读不到 family1、跨家庭写入 42501 拒绝）。测试账号：`xinster819+family@gmail.com`（可当真实家庭用或在 Auth→Users 删除；`+e2etest/+e2etest2` 为未确认残留可删）。
-- [ ] （用户 ⛔）commit+push 授权 → Vercel 部署（Root=`web`，两个 env）→（可选）自定义域名 → 全家 Safari 加主屏。见 SETUP.md §10 B–D。
-- [ ] 遗留小项：iOS 备份 JSON 导入 Web 用真实备份文件实测（兼容层已写）；撤销/清零的跨端传播已覆盖同类路径（UPDATE/touched_at）未逐一实测。
+- [x] commit+push（`d868b0d`/`f1e7ff6` → github.com/xinster819/reward-stars）+ **Vercel 部署上线（2026-07-03）**
+      判据：✅ **https://reward-stars.vercel.app** 线上验证通过：标题/manifest(standalone)/sw.js/图标 200、构建含 Supabase 配置（云端模式）。push main 即自动重新部署。Pages 工作流已撤（Vercel 接管，恢复可从 `f1e7ff6`）。
+- [ ] （用户）全家设备实测：手机流量 + 家里 WiFi 打开站点（验证大陆可达性）→ 登录同一账号 → Safari 加主屏。不稳→上自定义域名+Cloudflare（步骤届时补 SETUP）。
+- [x] **iPad 真实历史数据迁移云端（2026-07-03）**
+      判据：✅ App 签名过期打不开也照样迁——`devicectl` 从沙盒直读；发现 JSON 快照（6/21）比 SQLite WAL（6/25）**旧 4 天**，改为 sqlite3 直读数据库本体（Core Data：UUID=BLOB、日期=2001 纪元秒、WAL 合并）→ 转 Web 格式 → 先存云端旧数据快照 → `import_bundle` RPC 单事务导入（204）→ 复验 1 孩子/17 规则/22 流水（含 11 条软删除完整保留）/5 奖励，**余额 66 与 iPad 一致**，线上 UI 亲验。顺带把此前未实测的 import RPC 也真验了。数据文件只存 scratchpad 不进 git（教训 #1）。照片头像属 iPad 本机文件未迁，需在 Web 重设。
+- [ ] 遗留小项：Web「导入备份」UI 文件路径（含 Swift 数值日期兼容层）未用真实文件实测（本次走 RPC 直导绕过了 UI）；撤销/清零的跨端传播未逐一实测（同类 SQL 路径已覆盖）。
 
 ## A. 上架就绪（iOS，我能做）
 - [x] 定英文品牌名：保留 `Reward Stars`（en）/`行为奖励`（zh）。见 DECISIONS D19。无需改文件（`InfoPlist.xcstrings:7` / `Localizable.xcstrings:58` 已是该名）。上传若被占→备选 Bravo Stars → Tally Stars。

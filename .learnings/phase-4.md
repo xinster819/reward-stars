@@ -25,3 +25,9 @@
 - **测 UI 的脚本选择器教训**：Tab 按钮文本带 emoji，`textContent.trim() === 'Scoring'` 匹配失败导致"云端 events 为空"的假告警——先怀疑测试脚本，再怀疑被测系统（本次差点误判为写库 bug）。
 - REST 直查（带页面 session token）是验证"UI 显示 ≠ 真落库"的利器：children/rules/rewards/pin_blob/events 逐表确认。
 
+## 2026-07-03 iPad 数据迁移
+- **"启动时写的备份" ≠ 最新数据**：JSON 快照只在 App 启动时落盘，最后一次使用期间的改动全在 SQLite WAL 里（本例晚 4 天、差 20 条流水）。迁移前**必须对比快照与 store/WAL 的 mtime**，不一致就直读数据库本体。
+- **App 签名过期 ≠ 数据不可达**：`xcrun devicectl device copy from --domain-type appDataContainer` 能直接从沙盒拷文件（设备解锁+配对即可），不用复活 App。
+- **SwiftData(Core Data) SQLite 直读要点**：表名 Z 前缀、UUID 存 16 字节 BLOB（hex 转 8-4-4-4-12）、日期存 2001-01-01 纪元秒（+978307200 转 Unix）、枚举存 raw 字符串；直接开 .store 文件 sqlite3 会自动合并 WAL。
+- **python.org 的 macOS Python 默认没配 CA 证书**（urllib SSL 报 CERTIFICATE_VERIFY_FAILED）：网络请求换 curl，python 只做本地 JSON 加工。
+
