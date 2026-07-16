@@ -24,6 +24,7 @@ export class SupabaseRepo implements RewardRepo {
   private snap: DataSnapshot = EMPTY_SNAPSHOT
   private listeners = new Set<() => void>()
   private pinBlob: string | null = null
+  private weeklyReportEnabled = true
   private readyPromise: Promise<void>
   private client: SupabaseClient
   private familyID: UUID
@@ -86,7 +87,7 @@ export class SupabaseRepo implements RewardRepo {
     if (this.disposed) return
     const gen = ++this.generation
     const [family, children, rules, events, rewards, redemptions] = await Promise.all([
-      this.client.from('families').select('pin_blob').eq('id', this.familyID).maybeSingle(),
+      this.client.from('families').select('pin_blob, weekly_report_enabled').eq('id', this.familyID).maybeSingle(),
       this.client.from('children').select('*').eq('family_id', this.familyID).order('created_at'),
       this.client.from('rules').select('*').eq('family_id', this.familyID).order('sort_order'),
       this.client.from('events').select('*').eq('family_id', this.familyID).order('ts'),
@@ -101,6 +102,7 @@ export class SupabaseRepo implements RewardRepo {
     }
     if (gen !== this.generation || this.disposed) return // 期间有乐观提交/新 refetch → 本结果作废
     this.pinBlob = family.data?.pin_blob ?? null
+    this.weeklyReportEnabled = family.data?.weekly_report_enabled ?? true
     const child = (children.data ?? []).map(rowToChild)[0] ?? null
     if (child) this.childID = child.id
     this.snap = {
@@ -369,5 +371,20 @@ export class SupabaseRepo implements RewardRepo {
   async verifyPIN(pin: string): Promise<boolean> {
     if (!this.pinBlob) return false
     return verifyPinBlob(pin, this.pinBlob)
+  }
+
+  // ---- 每周周报邮件开关（随家庭同步；服务端 Edge Function 据此决定是否发信）----
+  getWeeklyReportEnabled(): boolean {
+    return this.weeklyReportEnabled
+  }
+  async setWeeklyReportEnabled(enabled: boolean): Promise<void> {
+    const { error } = await this.client.from('families').upsert({ id: this.familyID, weekly_report_enabled: enabled }, { onConflict: 'id' })
+    if (error) {
+      this.onSyncError(error.message)
+      throw new Error(error.message)
+    }
+    this.weeklyReportEnabled = enabled
+    this.snap = { ...this.snap } // useSyncExternalStore 按快照引用判变
+    this.notify()
   }
 }

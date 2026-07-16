@@ -17,6 +17,7 @@ import * as mut from './mutations'
 
 const DATA_KEY = 'reward-stars-data-v1'
 const PIN_KEY = 'reward-stars-pin-v1'
+const WEEKLY_KEY = 'reward-stars-weekly-report-v1'
 
 type Localizer = (s: string) => string
 
@@ -226,5 +227,15 @@ export class LocalRepo implements RewardRepo {
     const blob = this.storage.getItem(PIN_KEY)
     if (!blob) return false
     return verifyPinBlob(pin, blob)
+  }
+
+  // ---- 每周周报邮件开关（本地模式仅占位，不实际发信）----
+  getWeeklyReportEnabled(): boolean {
+    return this.storage.getItem(WEEKLY_KEY) !== 'off' // 默认开启
+  }
+  async setWeeklyReportEnabled(enabled: boolean): Promise<void> {
+    this.storage.setItem(WEEKLY_KEY, enabled ? 'on' : 'off')
+    this.snap = { ...this.snap } // useSyncExternalStore 按快照引用判变
+    this.listeners.forEach((l) => l())
   }
 }

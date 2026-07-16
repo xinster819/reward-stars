@@ -172,5 +172,14 @@ Vercel 项目 → **Settings → Domains** → 添加你的域名，按提示在
 3. Safari **分享 → 添加到主屏幕** → 图标像 App 一样打开（PWA）。
 4. 孩子设备保持默认孩子界面（只读+申请兑换）；家长界面凭 PIN 解锁，PIN 全家同步。
 
-> ⚠️ 云端行为（RLS 隔离/多端实时同步/服务端余额复验）代码与 SQL 已备好，但**在你完成 A 之前无法实测**——接线后如遇问题把报错发回来即可。
+### E. 每周积分周报邮件（可选）
+每周一早上自动给家长邮箱发一封上一整周的孩子积分周报（Supabase Edge Function + pg_cron + Resend）。
+完整步骤（密钥、Vault、部署、手动触发自测）见 **[web/supabase/functions/weekly-report/README.md](web/supabase/functions/weekly-report/README.md)**。要点：
+1. 注册 [Resend](https://resend.com) 拿 API key（测试可用 `onboarding@resend.dev` 发件）。
+2. 执行迁移 [web/supabase/migrations/0002_weekly_report.sql](web/supabase/migrations/0002_weekly_report.sql)（`supabase db push` 或 SQL Editor）。
+3. `supabase secrets set` 设 `RESEND_API_KEY / CRON_SECRET / REPORT_TZ / APP_URL / REPORT_FROM`，并把 `project_url / anon_key / cron_secret` 写入 Vault。
+4. `supabase functions deploy weekly-report`，然后 `curl` 手动触发自测（见 README）。
+5. 家长可在 App「家长设置 → 通知 → 每周积分周报邮件」随时关闭。默认时区 UTC+8（周一 08:00）；不同则同时改 cron 表达式与 `REPORT_TZ`。
+
+> ⚠️ 云端行为（RLS 隔离/多端实时同步/服务端余额复验/周报邮件定时）代码与 SQL 已备好，但**在你完成 A 之前无法实测**——接线后如遇问题把报错发回来即可。
 > 旧 iOS App 的数据如需搬到 Web：iOS 端「家长设置 → 立即备份」导出 JSON（在「文件」App 的 Backups 目录）→ Web 端「家长设置 → 导入备份」。字段同构、日期格式兼容层已写，**但尚未用真实 iOS 备份文件实测**——如导入异常，把 JSON 文件发回来我修。

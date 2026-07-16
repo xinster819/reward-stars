@@ -85,4 +85,8 @@ export interface RewardRepo {
   isPINSet(): boolean
   setPIN(pin: string): Promise<void>
   verifyPIN(pin: string): Promise<boolean>
+
+  // 每周积分周报邮件开关（本地=localStorage 占位，本地模式不发邮件；云=family 行随家庭同步）
+  getWeeklyReportEnabled(): boolean
+  setWeeklyReportEnabled(enabled: boolean): Promise<void>
 }

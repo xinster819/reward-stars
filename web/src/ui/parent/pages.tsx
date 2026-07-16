@@ -485,6 +485,27 @@ export function ParentHistory() {
 }
 
 // ---------- 设置 ----------
+function WeeklyReportToggle({ open }: { open: boolean }) {
+  const { repo, t, mode } = useApp()
+  const [enabled, setEnabled] = useState(true)
+  useEffect(() => { if (open) setEnabled(repo.getWeeklyReportEnabled()) }, [open])
+  return (
+    <div>
+      <h3 className="text-sm text-gray-400 mb-2">{t('通知')}</h3>
+      <div className="w-full rounded-2xl bg-gray-50 px-4 py-3 font-medium text-gray-700 flex items-center justify-between">
+        <span>{t('每周积分周报邮件')}</span>
+        <button
+          onClick={async () => { const next = !enabled; setEnabled(next); await repo.setWeeklyReportEnabled(next) }}
+          className={`rounded-full px-4 py-1.5 text-sm font-semibold ${enabled ? 'bg-accent text-white' : 'bg-gray-200 text-gray-500'}`}
+        >
+          {enabled ? t('开') : t('关')}
+        </button>
+      </div>
+      {mode === 'local' && <p className="text-xs text-gray-400 mt-1 px-1">{t('本地模式不发送邮件')}</p>}
+    </div>
+  )
+}
+
 export function ParentSettings({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { repo, mode, t, lang, setLang, switchToChild, signOut } = useApp()
   const snap = useData()
@@ -596,6 +617,8 @@ export function ParentSettings({ open, onClose }: { open: boolean; onClose: () =
             ))}
           </div>
         </div>
+
+        <WeeklyReportToggle open={open} />
 
         <div>
           <h3 className="text-sm text-gray-400 mb-2">{t('数据')}</h3>

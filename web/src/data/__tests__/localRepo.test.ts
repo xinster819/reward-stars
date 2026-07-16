@@ -162,3 +162,25 @@ describe('LocalRepo', () => {
     expect(fresh.getSnapshot().events.length).toBe(1)
   })
 })
+
+describe('LocalRepo weekly report toggle', () => {
+  it('默认开启', () => {
+    expect(new LocalRepo(memoryStorage()).getWeeklyReportEnabled()).toBe(true)
+  })
+  it('可关闭并读回', async () => {
+    const repo = new LocalRepo(memoryStorage())
+    await repo.setWeeklyReportEnabled(false)
+    expect(repo.getWeeklyReportEnabled()).toBe(false)
+  })
+  it('关闭后可重新开启', async () => {
+    const repo = new LocalRepo(memoryStorage())
+    await repo.setWeeklyReportEnabled(false)
+    await repo.setWeeklyReportEnabled(true)
+    expect(repo.getWeeklyReportEnabled()).toBe(true)
+  })
+  it('跨实例持久（localStorage）', async () => {
+    const storage = memoryStorage()
+    await new LocalRepo(storage).setWeeklyReportEnabled(false)
+    expect(new LocalRepo(storage).getWeeklyReportEnabled()).toBe(false)
+  })
+})

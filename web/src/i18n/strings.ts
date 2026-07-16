@@ -17,6 +17,11 @@ const EN: Record<string, string> = {
   奖励商店: 'Reward Store',
   家长设置: 'Parent Settings',
   设置: 'Settings',
+  通知: 'Notifications',
+  每周积分周报邮件: 'Weekly points email',
+  本地模式不发送邮件: "Local mode doesn't send email",
+  开: 'On',
+  关: 'Off',
   // 动作
   兑换: 'Redeem',
   记一次: 'Record',
