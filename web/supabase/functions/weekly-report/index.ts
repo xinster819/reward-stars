@@ -1,15 +1,18 @@
 // Edge Function「weekly-report」(Deno)：pg_cron 每周一触发 → 遍历每个家庭 → 生成上一整周积分周报
-// → Resend 投递 → report_log 幂等去重。积分口径全部委托给零依赖纯函数 summary.ts（与 web/src/domain 守恒）。
+// → 经 Gmail SMTP 投递 → report_log 幂等去重。积分口径全部委托给零依赖纯函数 summary.ts（与 web/src/domain 守恒）。
 //
 // 触发保护：必须带 x-cron-secret == CRON_SECRET。
-// 环境变量：SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY（平台自带）、RESEND_API_KEY、CRON_SECRET、
-//           REPORT_TZ（默认 Asia/Shanghai）、APP_URL、REPORT_FROM。
+// 环境变量：SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY（平台自带）、CRON_SECRET、
+//           GMAIL_USER（发件 Gmail 地址）、GMAIL_APP_PASSWORD（16 位应用专用密码，需账号开 2FA）、
+//           SMTP_HOST（默认 smtp.gmail.com）、SMTP_PORT（默认 465）、
+//           REPORT_TZ（默认 Asia/Shanghai）、APP_URL、REPORT_FROM（默认「行为奖励 <GMAIL_USER>」）。
 // 日志纪律：只记 family_id + status，绝不打印密钥或邮件正文/PII。
 //
 // 本文件为 Deno 运行时，不参与 web 的 tsc app build（tsconfig.app.json 仅 include src）。
 // 部署与手动触发见同目录 README.md。
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts'
 import { buildWeeklySummary, decideAction, type EvIn, type RedIn, type ChildIn } from './summary.ts'
 import { renderEmail } from './render.ts'
 
@@ -18,7 +21,12 @@ type Row = any
 
 const REPORT_TZ = Deno.env.get('REPORT_TZ') ?? 'Asia/Shanghai'
 const APP_URL = Deno.env.get('APP_URL') ?? 'https://app.example'
-const REPORT_FROM = Deno.env.get('REPORT_FROM') ?? 'Reward Stars <onboarding@resend.dev>'
+const GMAIL_USER = Deno.env.get('GMAIL_USER')
+const GMAIL_APP_PASSWORD = Deno.env.get('GMAIL_APP_PASSWORD')
+const SMTP_HOST = Deno.env.get('SMTP_HOST') ?? 'smtp.gmail.com'
+const SMTP_PORT = Number(Deno.env.get('SMTP_PORT') ?? '465')
+// Gmail 要求 From 地址 = 认证账号（或已设置的 send-as 别名）。默认用 GMAIL_USER。
+const REPORT_FROM = Deno.env.get('REPORT_FROM') ?? (GMAIL_USER ? `行为奖励 Reward Stars <${GMAIL_USER}>` : 'Reward Stars')
 
 function rowToEv(r: Row): EvIn {
   return { points: r.points, category: r.category, ts: r.ts, isVoided: r.is_voided, ruleName: r.rule_name, note: r.note ?? null }
@@ -30,16 +38,6 @@ function rowToChild(r: Row): ChildIn {
   return { id: r.id, name: r.name, avatarSymbol: r.avatar_symbol }
 }
 
-async function sendViaResend(apiKey: string, to: string, subject: string, html: string, text: string): Promise<{ ok: boolean; error?: string }> {
-  const resp = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: REPORT_FROM, to, subject, html, text }),
-  })
-  if (resp.ok) return { ok: true }
-  return { ok: false, error: `resend_${resp.status}` }
-}
-
 Deno.serve(async (req) => {
   const cronSecret = Deno.env.get('CRON_SECRET')
   if (!cronSecret || req.headers.get('x-cron-secret') !== cronSecret) {
@@ -48,8 +46,23 @@ Deno.serve(async (req) => {
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL')!
   const serviceRole = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-  const resendKey = Deno.env.get('RESEND_API_KEY')
   const admin = createClient(supabaseUrl, serviceRole)
+
+  // Gmail SMTP：连接懒建、循环内复用，最后统一关闭。
+  let smtp: SMTPClient | null = null
+  const sendEmail = async (to: string, subject: string, html: string, text: string): Promise<{ ok: boolean; error?: string }> => {
+    try {
+      if (!smtp) {
+        smtp = new SMTPClient({
+          connection: { hostname: SMTP_HOST, port: SMTP_PORT, tls: true, auth: { username: GMAIL_USER!, password: GMAIL_APP_PASSWORD! } },
+        })
+      }
+      await smtp.send({ from: REPORT_FROM, to, subject, content: text, html })
+      return { ok: true }
+    } catch (e) {
+      return { ok: false, error: 'smtp_' + (e instanceof Error ? e.message.slice(0, 80) : 'error') }
+    }
+  }
 
   const now = new Date()
   // 报告周起始（上周一）——只依赖 tz+now，用空数据探针取一次。
@@ -113,11 +126,11 @@ Deno.serve(async (req) => {
 
       const email = emailByFamily.get(familyId)
       if (!email) { counts.failed++; await record(familyId, 'failed', 'no_email'); continue }
-      if (!resendKey) { counts.failed++; await record(familyId, 'failed', 'no_resend_key'); continue }
+      if (!GMAIL_USER || !GMAIL_APP_PASSWORD) { counts.failed++; await record(familyId, 'failed', 'no_smtp_creds'); continue }
 
       const mode = action === 'send' ? 'report' : 'nudge'
       const { subject, html, text } = renderEmail(summary, { appUrl: APP_URL, mode })
-      const res = await sendViaResend(resendKey, email, subject, html, text)
+      const res = await sendEmail(email, subject, html, text)
       if (!res.ok) { counts.failed++; await record(familyId, 'failed', res.error ?? 'send_failed'); continue }
 
       if (action === 'send') { counts.sent++; await record(familyId, 'sent', null) }
@@ -128,6 +141,8 @@ Deno.serve(async (req) => {
       console.error('[weekly-report] family', familyId, 'failed:', e instanceof Error ? e.message : String(e))
     }
   }
+
+  if (smtp) { try { await smtp.close() } catch { /* 忽略关闭异常 */ } }
 
   console.log('[weekly-report] done', JSON.stringify(counts))
   return Response.json(counts)

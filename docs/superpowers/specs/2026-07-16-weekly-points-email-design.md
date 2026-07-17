@@ -25,7 +25,7 @@
 | 项 | 选择 |
 |---|---|
 | 投递渠道 | 家长周报**邮件** |
-| 邮件服务 | **Resend** |
+| 邮件服务 | ~~Resend~~ → **Gmail SMTP（denomailer）**（2026-07-17 用户改选：不注册第三方，用自有 Gmail + App Password 发信） |
 | 收件范围 | **所有注册家庭各发各的**（多租户，遍历 `auth.users`） |
 | 发送时机 | **周一 08:00 本地时区**（默认 UTC+8） |
 | 统计位置 | **方案 A**：Edge Function 内用零依赖 TS 模块 `summary.ts` 聚合，Vitest 平价测试钉死在权威引擎上 |

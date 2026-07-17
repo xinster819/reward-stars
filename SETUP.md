@@ -175,9 +175,9 @@ Vercel 项目 → **Settings → Domains** → 添加你的域名，按提示在
 ### E. 每周积分周报邮件（可选）
 每周一早上自动给家长邮箱发一封上一整周的孩子积分周报（Supabase Edge Function + pg_cron + Resend）。
 完整步骤（密钥、Vault、部署、手动触发自测）见 **[web/supabase/functions/weekly-report/README.md](web/supabase/functions/weekly-report/README.md)**。要点：
-1. 注册 [Resend](https://resend.com) 拿 API key（测试可用 `onboarding@resend.dev` 发件）。
+1. 用**你自己的 Gmail** 发信：Google 账号开两步验证 → [生成 App Password](https://myaccount.google.com/apppasswords)（16 位）。不注册任何第三方发信服务。
 2. 执行迁移 [web/supabase/migrations/0002_weekly_report.sql](web/supabase/migrations/0002_weekly_report.sql)（`supabase db push` 或 SQL Editor）。
-3. `supabase secrets set` 设 `RESEND_API_KEY / CRON_SECRET / REPORT_TZ / APP_URL / REPORT_FROM`，并把 `project_url / anon_key / cron_secret` 写入 Vault。
+3. `supabase secrets set` 设 `GMAIL_USER / GMAIL_APP_PASSWORD / CRON_SECRET / REPORT_TZ / APP_URL`，并把 `project_url / anon_key / cron_secret` 写入 Vault。
 4. `supabase functions deploy weekly-report`，然后 `curl` 手动触发自测（见 README）。
 5. 家长可在 App「家长设置 → 通知 → 每周积分周报邮件」随时关闭。默认时区 UTC+8（周一 08:00）；不同则同时改 cron 表达式与 `REPORT_TZ`。
 

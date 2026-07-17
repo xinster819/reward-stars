@@ -5,7 +5,7 @@
 - 触发：`pg_cron`（周一 00:00 UTC）→ `pg_net` POST 本函数（迁移 `0002_weekly_report.sql`）
 - 计算：`summary.ts`（零依赖纯函数，口径与 `web/src/domain/` 守恒，Vitest 平价测试保证）
 - 渲染：`render.ts`（邮件安全 HTML + 纯文本兜底）
-- 投递：Resend REST API
+- 投递：**Gmail SMTP**（`denomailer`）——用你自己的 Gmail 发，不依赖第三方发信服务
 - 幂等：`report_log(family_id, week_start)` 唯一键，重跑不重复发信
 - 分流：从未记分的空账号跳过；有历史但本周静默 → 轻量提醒；家长可在「家长设置 → 通知」关闭
 
@@ -15,16 +15,27 @@
 `pg_cron` 按 UTC：`0 0 * * 1`（周一 00:00 UTC）在 `Asia/Shanghai` 即周一 08:00。
 **本地时区非 UTC+8 时**：同时改 `0002_weekly_report.sql` 的 cron 表达式与本函数的 `REPORT_TZ`。
 
+## 前置：Gmail 应用专用密码（App Password）
+
+用 Gmail SMTP 发信，需要一个 **App Password**（不是你的登录密码）：
+1. Google 账号必须**已开启两步验证（2FA）**——否则没有 App Password 选项。
+2. 打开 [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords) → 生成一个（起个名如 "reward-stars"）→ 得到一串 **16 位密码**（形如 `abcd efgh ijkl mnop`，用时去掉空格）。
+3. 这串就是下面的 `GMAIL_APP_PASSWORD`；`GMAIL_USER` 是你的 Gmail 地址。
+
+> Gmail 免费额度约 500 封/天，家庭自用一周一封绰绰有余。发件人显示为你这个 Gmail 地址。
+
 ## 环境变量（Edge Function secrets）
 
 | 变量 | 说明 |
 |---|---|
 | `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | 平台自动注入，无需手动设 |
-| `RESEND_API_KEY` | Resend API key |
+| `GMAIL_USER` | 发件 Gmail 地址（同时是 SMTP 认证用户名） |
+| `GMAIL_APP_PASSWORD` | 上面生成的 16 位应用专用密码（去掉空格） |
+| `SMTP_HOST` / `SMTP_PORT` | 默认 `smtp.gmail.com` / `465`，一般不用改 |
 | `CRON_SECRET` | 自定义随机串；函数校验 `x-cron-secret` 头，防公网乱触发 |
 | `REPORT_TZ` | 报告时区，默认 `Asia/Shanghai` |
 | `APP_URL` | App 部署地址（邮件里「打开 App」链接），如 Vercel 域名 |
-| `REPORT_FROM` | 发件地址；测试用 `Reward Stars <onboarding@resend.dev>`，正式用你验证过的域名 |
+| `REPORT_FROM` | 发件显示名/地址，默认 `行为奖励 Reward Stars <GMAIL_USER>`；地址须等于 `GMAIL_USER`（或已在 Gmail 设置的 send-as 别名） |
 
 ## Vault（供 cron 触发时读取，勿写进 SQL 文件）
 
@@ -44,16 +55,20 @@ supabase db push          # 或在 Dashboard SQL Editor 执行 0002_weekly_repor
 
 # 2) 设 Edge Function secrets
 supabase secrets set \
-  RESEND_API_KEY=re_xxx \
+  GMAIL_USER=you@gmail.com \
+  GMAIL_APP_PASSWORD=abcdefghijklmnop \
   CRON_SECRET=$(openssl rand -hex 24) \
   REPORT_TZ=Asia/Shanghai \
-  APP_URL=https://your-app.vercel.app \
-  REPORT_FROM="Reward Stars <onboarding@resend.dev>"
+  APP_URL=https://reward-stars.vercel.app
 # 注意：把上面生成的 CRON_SECRET 同值写入 Vault 的 cron_secret
 
 # 3) 部署函数
 supabase functions deploy weekly-report
 ```
+
+> ⚠️ 边缘运行时出站 SMTP：Supabase Edge Function（Deno）支持 `denomailer` 出站发信，
+> 但极少数情况下平台可能限制 465/587 出站端口。**首次手动触发若返回 `failed` 且 detail 为 `smtp_...`**，
+> 多半是端口/认证问题——把 detail 发我，必要时改 `SMTP_PORT=587` 或退回 API 型发信服务。
 
 ## 手动触发自测（不必等到周一）
 
