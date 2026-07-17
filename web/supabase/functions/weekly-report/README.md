@@ -39,13 +39,18 @@
 
 ## Vault（供 cron 触发时读取，勿写进 SQL 文件）
 
-在 Dashboard → Project Settings → Vault 新增三条 secret：
+在 Dashboard → **Integrations → Vault → Secrets** 新增**两条**：
 
 | name | value |
 |---|---|
 | `project_url` | `https://<project-ref>.supabase.co` |
-| `anon_key` | 项目 anon key |
-| `cron_secret` | 与上面 `CRON_SECRET` **相同**的值 |
+| `cron_secret` | 与 Edge Function secrets 里的 `CRON_SECRET` **完全相同**的值 |
+
+> ⚠️ 两处 `cron_secret` 不一致 = 定时那次直接 401、收不到邮件（手动 curl 却是好的，很难察觉）。
+> 改密钥时**务必两边同步**。
+>
+> 不需要 `anon_key`：函数以 `--no-verify-jwt` 部署，平台不再校验 Authorization 头。
+> 安全性不降级——真正把关的是 `x-cron-secret`；anon key 本就是公开的（打包进前端 JS），那道门形同虚设。
 
 ## 部署
 
@@ -62,8 +67,8 @@ supabase secrets set \
   APP_URL=https://reward-stars.vercel.app
 # 注意：把上面生成的 CRON_SECRET 同值写入 Vault 的 cron_secret
 
-# 3) 部署函数
-supabase functions deploy weekly-report
+# 3) 部署函数（必须带 --no-verify-jwt：让 cron 无需 anon_key；安全由 x-cron-secret 把关）
+supabase functions deploy weekly-report --project-ref <project-ref> --no-verify-jwt
 ```
 
 > ⚠️ 边缘运行时出站 SMTP：Supabase Edge Function（Deno）支持 `denomailer` 出站发信，
@@ -83,8 +88,19 @@ curl -X POST "https://<project-ref>.supabase.co/functions/v1/weekly-report" \
 { "weekStart": "2026-07-06", "sent": 1, "nudged": 0, "skip_empty": 0, "skip_disabled": 0, "skip_already": 0, "failed": 0 }
 ```
 
-- 想再次真发：先删掉本周日志再触发 —— `delete from report_log where week_start = '<weekStart>';`
+- **想强制重发**（忽略幂等，自测用）：URL 加 `?force=1`
+  ```bash
+  curl -X POST ".../functions/v1/weekly-report?force=1" -H "x-cron-secret: <CRON_SECRET>"
+  ```
 - 查看结果：`select * from report_log order by sent_at desc;`
+
+## 验证定时链路（不必等到周一）
+
+Dashboard → **Integrations → Cron → Jobs**：
+- `Next run` 应显示本地时间的**周一 08:00**（例：`20 Jul 2026 08:00:00 (+0800)`）——这是时区是否配对的最直接证据
+- 行尾 `⋯` → **Run command** 可立即执行该 cron 的真实命令（走 Vault → pg_net → 函数全链路）
+- 结果查 `select id, status_code, content from net._http_response order by id desc limit 5;`
+  （200 = 通；401 = 两处 `cron_secret` 不一致）
 
 ## 本地单元测试（口径 + 渲染，无需 Supabase）
 

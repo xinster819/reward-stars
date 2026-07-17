@@ -1,7 +1,7 @@
 -- 每周积分周报邮件：家庭级开关列 + 幂等日志表 + 定时触发（pg_cron + pg_net）。
 -- 对位 docs/superpowers/specs/2026-07-16-weekly-points-email-design.md。
--- ⚠️ 本文件不含任何明文密钥；cron 触发所需的 URL/anon_key/cron_secret 从 Supabase Vault 读取
---    （部署前置：Dashboard → Project Settings → Vault 存 project_url / anon_key / cron_secret，见函数 README）。
+-- ⚠️ 本文件不含任何明文密钥；cron 触发所需的 project_url 与 cron_secret 从 Supabase Vault 读取
+--    （部署前置：Dashboard → Integrations → Vault 存 project_url / cron_secret 两条，见函数 README）。
 -- 在 Dashboard SQL Editor 整段执行，或 `supabase db push`。
 
 -- ---- 1) 家长可关闭的周报开关（RLS 沿用 families 现有 family_self 策略，家长可改自己这行）----
@@ -24,6 +24,9 @@ create index if not exists idx_report_log_week on report_log (week_start);
 alter table report_log enable row level security;
 
 -- ---- 3) 定时触发：pg_cron 每周一 00:00 UTC（= UTC+8 周一 08:00）POST 到 Edge Function ----
+-- 函数以 `--no-verify-jwt` 部署：平台不再要求 Authorization 头，故 cron 无需 anon_key。
+-- 安全性不降级——真正的把关是函数内的 x-cron-secret 校验；anon key 本就是公开的（打包进前端 JS），
+-- 那道 JWT 门形同虚设，去掉它只是少一个无谓的依赖。
 create extension if not exists pg_cron;
 create extension if not exists pg_net;
 
@@ -42,7 +45,6 @@ select cron.schedule(
            || '/functions/v1/weekly-report',
     headers := jsonb_build_object(
       'Content-Type', 'application/json',
-      'Authorization', 'Bearer ' || (select decrypted_secret from vault.decrypted_secrets where name = 'anon_key'),
       'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'cron_secret')
     ),
     body := '{}'::jsonb
