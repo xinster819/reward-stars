@@ -29,6 +29,43 @@ function fmtDate(iso: string): string {
   return `${m}月${d}日`
 }
 
+/** 'YYYY-MM-DD' → 'M/D'（纯 ASCII，给邮件主题用，避免主题过长触发 header 折行）。 */
+function asciiDate(iso: string): string {
+  const [, m, d] = iso.split('-').map(Number)
+  return `${m}/${d}`
+}
+
+/**
+ * RFC2047 header 编码：非 ASCII → `=?UTF-8?B?<base64>?=`，每段 ≤75 字符，按码点切片。
+ *
+ * 为什么必须自己编（血的教训）：denomailer 对非 ASCII header 用 quoted-printable 的软换行（行尾 `=`）
+ * 折行，而软换行在 header 里是非法的——续行没有前导空格，解析器会认为 header 区就此结束，
+ * 于是整封 MIME（From/To/Content-Type/boundary）全被当成正文显示。
+ * 只要交给它的 header 已是纯 ASCII，它就不会再编码、也就不会折行。
+ * 相邻 encoded-word 之间的空格按 RFC2047 §6.2 解码时被忽略，故可直接用空格拼接切片。
+ */
+export function encodeMimeWord(s: string): string {
+  if (/^[\x20-\x7E]*$/.test(s)) return s // 纯 ASCII：原样交出
+  const enc = new TextEncoder()
+  const b64 = (bytes: Uint8Array) => btoa(String.fromCharCode(...bytes))
+  const MAX_B64 = 60 // '=?UTF-8?B?'(10) + 60 + '?='(2) = 72 ≤ 75；60 是 4 的倍数
+  const words: string[] = []
+  let cur = ''
+  const flush = () => {
+    if (cur) {
+      words.push(`=?UTF-8?B?${b64(enc.encode(cur))}?=`)
+      cur = ''
+    }
+  }
+  for (const ch of Array.from(s)) {
+    // 按码点遍历：多字节字符/emoji 代理对不会被切坏
+    if (Math.ceil(enc.encode(cur + ch).length / 3) * 4 > MAX_B64) flush()
+    cur += ch
+  }
+  flush()
+  return words.join(' ')
+}
+
 function signed(n: number): string {
   return n > 0 ? `+${n}` : String(n)
 }
@@ -105,7 +142,8 @@ function shell(inner: string, appUrl: string): string {
 function renderReport(s: WeeklySummary, appUrl: string): RenderedEmail {
   const name = esc(s.child.name)
   const range = `${fmtDate(s.weekStartDate)}–${fmtDate(s.weekEndDate)}`
-  const subject = `📊 ${s.child.name} 上周积分周报（${range}）`
+  // 主题刻意短 + 日期用 ASCII：编码后要能装进【单段】encoded-word，避免触发 header 折行（见 encodeMimeWord）
+  const subject = `${s.child.name} 上周积分周报 ${asciiDate(s.weekStartDate)}-${asciiDate(s.weekEndDate)}`
 
   const badges = s.newBadges.length
     ? section('本周新解锁徽章', s.newBadges.map((b) => `<span style="display:inline-block;background:#fff4e5;color:${ACCENT};border-radius:10px;padding:6px 12px;font-size:13px;font-weight:600;margin:0 6px 6px 0;">🏅 ${esc(b.title)} · ${esc(b.detail)}</span>`).join(''))
@@ -163,7 +201,7 @@ function renderReport(s: WeeklySummary, appUrl: string): RenderedEmail {
 
 function renderNudge(s: WeeklySummary, appUrl: string): RenderedEmail {
   const name = esc(s.child.name)
-  const subject = `👋 别忘了给 ${s.child.name} 记分哦`
+  const subject = `别忘了给 ${s.child.name} 记分`
   const inner = `
     <p style="font-size:16px;color:${INK};margin:16px 0 8px;">${name} 本周还没有任何积分记录～</p>
     <p style="font-size:14px;color:${MUTE};line-height:1.6;">好习惯贵在坚持。打开 App 给 ${name} 记分，让这周的努力被看见吧。</p>

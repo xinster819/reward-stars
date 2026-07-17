@@ -1,6 +1,19 @@
 import { describe, it, expect } from 'vitest'
-import { renderEmail } from '../render'
+import { renderEmail, encodeMimeWord } from '../render'
 import type { WeeklySummary } from '../summary'
+
+/** 按 RFC2047 解码回来（相邻 encoded-word 之间的空格应被忽略）。 */
+function decodeMimeWords(s: string): string {
+  return s
+    .split(' ')
+    .map((w) => {
+      const m = /^=\?UTF-8\?B\?(.*)\?=$/.exec(w)
+      if (!m) return w
+      const bytes = Uint8Array.from(atob(m[1]), (c) => c.charCodeAt(0))
+      return new TextDecoder().decode(bytes)
+    })
+    .join('')
+}
 
 const base: WeeklySummary = {
   child: { id: 'c1', name: '小明', avatarSymbol: 'teddybear.fill' },
@@ -79,6 +92,63 @@ describe('renderEmail — nudge', () => {
   })
   it('不含具体净分数字块（nudge 不报数据）', () => {
     expect(r.html).not.toContain('本周净得分')
+  })
+})
+
+// 回归：denomailer 对非 ASCII header 会用 QP 软换行（`=` 结尾）折行，那在 header 里非法，
+// 会把 header 区截断、导致整封 MIME 被当正文显示。对策：我们自己编成纯 ASCII 的 encoded-word。
+describe('encodeMimeWord — RFC2047 header 编码', () => {
+  it('纯 ASCII 原样返回（denomailer 不会再碰它）', () => {
+    expect(encodeMimeWord('Reward Stars')).toBe('Reward Stars')
+    expect(encodeMimeWord('7/6-7/12')).toBe('7/6-7/12')
+  })
+
+  it('中文编成合规 encoded-word 且能解回原文', () => {
+    const src = '小明 上周积分周报 6/29-7/5'
+    const out = encodeMimeWord(src)
+    expect(out).toMatch(/^=\?UTF-8\?B\?[A-Za-z0-9+/=]+\?=( =\?UTF-8\?B\?[A-Za-z0-9+/=]+\?=)*$/)
+    expect(decodeMimeWords(out)).toBe(src)
+  })
+
+  it('输出必须是纯 ASCII（否则 denomailer 又会去 QP 编码）', () => {
+    const out = encodeMimeWord('别忘了给 小明 记分')
+    // eslint-disable-next-line no-control-regex
+    expect(/^[\x20-\x7E]*$/.test(out)).toBe(true)
+  })
+
+  it('每段 encoded-word ≤75 字符（RFC2047 硬限制）', () => {
+    const out = encodeMimeWord('小明'.repeat(60))
+    for (const w of out.split(' ')) expect(w.length).toBeLessThanOrEqual(75)
+  })
+
+  it('超长文本切多段后仍能完整解回（不得在多字节字符中间切断）', () => {
+    const src = '积分周报'.repeat(40)
+    expect(decodeMimeWords(encodeMimeWord(src))).toBe(src)
+  })
+
+  it('emoji（代理对）不被切坏', () => {
+    const src = '📊📈📉 小明 上周积分周报'
+    expect(decodeMimeWords(encodeMimeWord(src))).toBe(src)
+  })
+
+  it('encoded-word 内部不含空格（含空格即非法）', () => {
+    const out = encodeMimeWord('小明 上周积分周报')
+    for (const w of out.split(' ')) {
+      if (w.startsWith('=?')) expect(w).not.toMatch(/\?B\?[^?]* /)
+    }
+  })
+})
+
+describe('renderEmail — 主题必须短且可安全编码', () => {
+  it('report 主题编码后单段即可装下（避免 denomailer 折行）', () => {
+    const out = encodeMimeWord(renderEmail(base, { appUrl: 'https://app.example', mode: 'report' }).subject)
+    expect(out.split(' ').length).toBe(1)
+    expect(out.length).toBeLessThanOrEqual(75)
+  })
+  it('nudge 主题同样单段', () => {
+    const out = encodeMimeWord(renderEmail({ ...base, weekHasActivity: false }, { appUrl: 'https://app.example', mode: 'nudge' }).subject)
+    expect(out.split(' ').length).toBe(1)
+    expect(out.length).toBeLessThanOrEqual(75)
   })
 })
 

@@ -14,7 +14,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts'
 import { buildWeeklySummary, decideAction, type EvIn, type RedIn, type ChildIn } from './summary.ts'
-import { renderEmail } from './render.ts'
+import { renderEmail, encodeMimeWord } from './render.ts'
 
 // deno-lint-ignore no-explicit-any
 type Row = any
@@ -26,7 +26,16 @@ const GMAIL_APP_PASSWORD = Deno.env.get('GMAIL_APP_PASSWORD')
 const SMTP_HOST = Deno.env.get('SMTP_HOST') ?? 'smtp.gmail.com'
 const SMTP_PORT = Number(Deno.env.get('SMTP_PORT') ?? '465')
 // Gmail 要求 From 地址 = 认证账号（或已设置的 send-as 别名）。默认用 GMAIL_USER。
-const REPORT_FROM = Deno.env.get('REPORT_FROM') ?? (GMAIL_USER ? `行为奖励 Reward Stars <${GMAIL_USER}>` : 'Reward Stars')
+// 显示名默认用【纯 ASCII】：非 ASCII 显示名同样会被 denomailer 的 header 编码器折坏（见 render.ts encodeMimeWord）。
+const REPORT_FROM = Deno.env.get('REPORT_FROM') ?? (GMAIL_USER ? `Reward Stars <${GMAIL_USER}>` : 'Reward Stars')
+
+/** 把 `显示名 <addr>` 里的显示名按 RFC2047 编码；地址部分原样保留。 */
+function encodeFromHeader(from: string): string {
+  const m = /^\s*(.*?)\s*<([^>]+)>\s*$/.exec(from)
+  if (!m) return encodeMimeWord(from)
+  const name = m[1].replace(/^"|"$/g, '').trim()
+  return name ? `${encodeMimeWord(name)} <${m[2].trim()}>` : `<${m[2].trim()}>`
+}
 
 function rowToEv(r: Row): EvIn {
   return { points: r.points, category: r.category, ts: r.ts, isVoided: r.is_voided, ruleName: r.rule_name, note: r.note ?? null }
@@ -57,12 +66,16 @@ Deno.serve(async (req) => {
           connection: { hostname: SMTP_HOST, port: SMTP_PORT, tls: true, auth: { username: GMAIL_USER!, password: GMAIL_APP_PASSWORD! } },
         })
       }
-      await smtp.send({ from: REPORT_FROM, to, subject, content: text, html })
+      // subject/from 必须是纯 ASCII（已 RFC2047 编码），否则 denomailer 会在 header 里非法折行
+      await smtp.send({ from: encodeFromHeader(REPORT_FROM), to, subject: encodeMimeWord(subject), content: text, html })
       return { ok: true }
     } catch (e) {
       return { ok: false, error: 'smtp_' + (e instanceof Error ? e.message.slice(0, 80) : 'error') }
     }
   }
+
+  // ?force=1：忽略 report_log 幂等，强制重发（仅供自测；仍受 x-cron-secret 保护）
+  const force = new URL(req.url).searchParams.get('force') === '1'
 
   const now = new Date()
   // 报告周起始（上周一）——只依赖 tz+now，用空数据探针取一次。
@@ -99,7 +112,7 @@ Deno.serve(async (req) => {
     const familyId: string = fam.id
     try {
       const enabled: boolean = fam.weekly_report_enabled ?? true
-      const alreadySent = alreadyDone.has(familyId)
+      const alreadySent = force ? false : alreadyDone.has(familyId)
 
       // 拉该家数据（service_role 绕 RLS）
       const [childrenRes, eventsRes, redRes] = await Promise.all([
