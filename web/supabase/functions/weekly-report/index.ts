@@ -14,7 +14,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts'
 import { buildWeeklySummary, decideAction, type EvIn, type RedIn, type ChildIn } from './summary.ts'
-import { renderEmail, encodeMimeWord } from './render.ts'
+import { renderEmail } from './render.ts'
 
 // deno-lint-ignore no-explicit-any
 type Row = any
@@ -26,16 +26,17 @@ const GMAIL_APP_PASSWORD = Deno.env.get('GMAIL_APP_PASSWORD')
 const SMTP_HOST = Deno.env.get('SMTP_HOST') ?? 'smtp.gmail.com'
 const SMTP_PORT = Number(Deno.env.get('SMTP_PORT') ?? '465')
 // Gmail 要求 From 地址 = 认证账号（或已设置的 send-as 别名）。默认用 GMAIL_USER。
-// 显示名默认用【纯 ASCII】：非 ASCII 显示名同样会被 denomailer 的 header 编码器折坏（见 render.ts encodeMimeWord）。
-const REPORT_FROM = Deno.env.get('REPORT_FROM') ?? (GMAIL_USER ? `Reward Stars <${GMAIL_USER}>` : 'Reward Stars')
+// 显示名必须【纯 ASCII】：denomailer 的 header 编码器会折坏非 ASCII、也会把 `=` 编成 `=3D`
+// （详见 render.ts 顶部注释）⇒ RFC2047 encoded-word 在这条链路上根本用不了。
+const rawFrom = Deno.env.get('REPORT_FROM') ?? (GMAIL_USER ? `Reward Stars <${GMAIL_USER}>` : 'Reward Stars')
 
-/** 把 `显示名 <addr>` 里的显示名按 RFC2047 编码；地址部分原样保留。 */
-function encodeFromHeader(from: string): string {
-  const m = /^\s*(.*?)\s*<([^>]+)>\s*$/.exec(from)
-  if (!m) return encodeMimeWord(from)
-  const name = m[1].replace(/^"|"$/g, '').trim()
-  return name ? `${encodeMimeWord(name)} <${m[2].trim()}>` : `<${m[2].trim()}>`
+/** 非 ASCII 或含 `=` 的显示名会发出坏掉的 From ⇒ 直接回退到安全的 ASCII 显示名（fail-safe，不静默发坏邮件）。 */
+function safeFrom(from: string): string {
+  if (/^[\x20-\x7E]*$/.test(from) && !from.replace(/<[^>]*>/, '').includes('=')) return from
+  const m = /<([^>]+)>/.exec(from)
+  return m ? `Reward Stars <${m[1].trim()}>` : 'Reward Stars'
 }
+const REPORT_FROM = safeFrom(rawFrom)
 
 function rowToEv(r: Row): EvIn {
   return { points: r.points, category: r.category, ts: r.ts, isVoided: r.is_voided, ruleName: r.rule_name, note: r.note ?? null }
@@ -66,8 +67,8 @@ Deno.serve(async (req) => {
           connection: { hostname: SMTP_HOST, port: SMTP_PORT, tls: true, auth: { username: GMAIL_USER!, password: GMAIL_APP_PASSWORD! } },
         })
       }
-      // subject/from 必须是纯 ASCII（已 RFC2047 编码），否则 denomailer 会在 header 里非法折行
-      await smtp.send({ from: encodeFromHeader(REPORT_FROM), to, subject: encodeMimeWord(subject), content: text, html })
+      // subject/from 必须是纯 ASCII 且不含 `=`（render.ts 已保证主题如此；From 走 safeFrom 兜底）
+      await smtp.send({ from: REPORT_FROM, to, subject, content: text, html })
       return { ok: true }
     } catch (e) {
       return { ok: false, error: 'smtp_' + (e instanceof Error ? e.message.slice(0, 80) : 'error') }

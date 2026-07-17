@@ -35,36 +35,14 @@ function asciiDate(iso: string): string {
   return `${m}/${d}`
 }
 
-/**
- * RFC2047 header 编码：非 ASCII → `=?UTF-8?B?<base64>?=`，每段 ≤75 字符，按码点切片。
- *
- * 为什么必须自己编（血的教训）：denomailer 对非 ASCII header 用 quoted-printable 的软换行（行尾 `=`）
- * 折行，而软换行在 header 里是非法的——续行没有前导空格，解析器会认为 header 区就此结束，
- * 于是整封 MIME（From/To/Content-Type/boundary）全被当成正文显示。
- * 只要交给它的 header 已是纯 ASCII，它就不会再编码、也就不会折行。
- * 相邻 encoded-word 之间的空格按 RFC2047 §6.2 解码时被忽略，故可直接用空格拼接切片。
- */
-export function encodeMimeWord(s: string): string {
-  if (/^[\x20-\x7E]*$/.test(s)) return s // 纯 ASCII：原样交出
-  const enc = new TextEncoder()
-  const b64 = (bytes: Uint8Array) => btoa(String.fromCharCode(...bytes))
-  const MAX_B64 = 60 // '=?UTF-8?B?'(10) + 60 + '?='(2) = 72 ≤ 75；60 是 4 的倍数
-  const words: string[] = []
-  let cur = ''
-  const flush = () => {
-    if (cur) {
-      words.push(`=?UTF-8?B?${b64(enc.encode(cur))}?=`)
-      cur = ''
-    }
-  }
-  for (const ch of Array.from(s)) {
-    // 按码点遍历：多字节字符/emoji 代理对不会被切坏
-    if (Math.ceil(enc.encode(cur + ch).length / 3) * 4 > MAX_B64) flush()
-    cur += ch
-  }
-  flush()
-  return words.join(' ')
-}
+// ⚠️ 邮件主题为什么是英文（两次事故换来的结论，别改回中文）：
+// 本链路用 denomailer 发信，它的 header 编码器有两处坏：
+//  1) 非 ASCII header 用 quoted-printable 软换行（行尾 `=`）折行 —— 软换行在 header 里非法，
+//     会截断 header 区，导致整封 MIME 被当正文显示；
+//  2) 会把 header 里的 `=` 编成 `=3D` —— 而 RFC2047 encoded-word（`=?UTF-8?B?..?=`）必然含 `=`，
+//     于是 base64 被打乱、收件端解不开。
+// 两条叠加 ⇒ 这条链路上主题【只能纯 ASCII 且不含 `=`】。中文主题需换 API 型邮件服务（如 Resend）。
+// 正文不受影响：body 的 quoted-printable 是合法用法，中文照常显示。
 
 function signed(n: number): string {
   return n > 0 ? `+${n}` : String(n)
@@ -142,8 +120,8 @@ function shell(inner: string, appUrl: string): string {
 function renderReport(s: WeeklySummary, appUrl: string): RenderedEmail {
   const name = esc(s.child.name)
   const range = `${fmtDate(s.weekStartDate)}–${fmtDate(s.weekEndDate)}`
-  // 主题刻意短 + 日期用 ASCII：编码后要能装进【单段】encoded-word，避免触发 header 折行（见 encodeMimeWord）
-  const subject = `${s.child.name} 上周积分周报 ${asciiDate(s.weekStartDate)}-${asciiDate(s.weekEndDate)}`
+  // 纯 ASCII、无 `=`、不含孩子名（中文）——原因见文件顶部注释。孩子名/中文内容都在正文里。
+  const subject = `Reward Stars Weekly Report ${asciiDate(s.weekStartDate)}-${asciiDate(s.weekEndDate)}`
 
   const badges = s.newBadges.length
     ? section('本周新解锁徽章', s.newBadges.map((b) => `<span style="display:inline-block;background:#fff4e5;color:${ACCENT};border-radius:10px;padding:6px 12px;font-size:13px;font-weight:600;margin:0 6px 6px 0;">🏅 ${esc(b.title)} · ${esc(b.detail)}</span>`).join(''))
@@ -201,7 +179,7 @@ function renderReport(s: WeeklySummary, appUrl: string): RenderedEmail {
 
 function renderNudge(s: WeeklySummary, appUrl: string): RenderedEmail {
   const name = esc(s.child.name)
-  const subject = `别忘了给 ${s.child.name} 记分`
+  const subject = 'Reward Stars Reminder - no scores logged last week'
   const inner = `
     <p style="font-size:16px;color:${INK};margin:16px 0 8px;">${name} 本周还没有任何积分记录～</p>
     <p style="font-size:14px;color:${MUTE};line-height:1.6;">好习惯贵在坚持。打开 App 给 ${name} 记分，让这周的努力被看见吧。</p>
